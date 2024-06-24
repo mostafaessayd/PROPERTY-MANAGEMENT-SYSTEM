@@ -48,7 +48,7 @@ class Room {
         // this.NumberOfFemaleBeds = Math.floor(Math.random * this.numberOfBeds + 1);
         // this.NumberOfMaleBeds = this.numberOfBeds - this.NumberOfFemaleBeds;
      
-
+        
         this.NumberOfFemaleBeds = Math.floor(Math.random()*(this.numberOfBeds + 1));
         this.NumberOfMaleBeds = this.numberOfBeds - this.NumberOfFemaleBeds;
 
@@ -86,7 +86,9 @@ class Room {
 
 
         for(let i = 0 ; i < this.numberOfBeds ; i++) {
-           this.statusOfBeds[i] = this.getRandomStatus();
+          this.statusOfBeds[i] = this.getRandomStatus();
+          // this.positionOfBeds[i] = getPosition();
+           this.positionOfBeds[i] = "dkdkd";
             if(this.statusOfBeds[i] === true) {
                  this.startDateOfResidentInBeds[i] = getRandomStartDate();
                 var fn = getRandomResident('Reserved');
@@ -99,7 +101,6 @@ class Room {
                  
                  this.residentOfBeds[i] = new Resident(fn , ln , em , cont , arv , cr , dr);
                 this.durationOfReservationOfBeds[i] = 1 + Math.floor(Math.random() * 200);;
-                this.positionOfBeds[i] = getPosition();
             }
         }
     }

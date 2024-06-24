@@ -57,7 +57,7 @@ var arrayOfRoomTypes = [
 
 //onload function
 window.onload = function () {
-    getNumberOfFloor();
+   // getNumberOfFloor();
     hotel = new Hotel();
     numberOfFloors = hotel.numberOfFloors;
     numberOfRooms = hotel.numberOfRooms;
@@ -98,9 +98,9 @@ function goToPMS() {
     document.getElementById('menu-of-options').style.display = 'block';
 
     if(currentUser === 'admin') {
-        document.getElementById('remaning-div').style.height = '100px';
+        document.getElementById('remaning-div').style.height = '50px';
     }else {
-        document.getElementById('remaning-div').style.height = '150px';
+        document.getElementById('remaning-div').style.height = '100px';
     }
 }
 

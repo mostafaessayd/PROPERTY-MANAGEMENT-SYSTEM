@@ -1,8 +1,7 @@
 .box-of-day {
-    border: 1px solid black;
-    height: 50px;
-    width: 30px;
-    background-color: aquamarine;
+    border-left: 1px solid black;
+    height: 45px;
+    width: 36px;
 }
 
 #page-of-calendar {
@@ -14,18 +13,20 @@
 #days-in-calendar {
     display: flex;
     height: 50px;
-    width: 950px;
+    width: 700px;
+    /* border: 1px solid black; */
 }
 
 #boocked-in-days {
-    height: 510px;
+    height: 487px;
     width: 950px; 
     scrollbar-width: none;
     overflow: scroll;
+    border-top: 1px solid black;
 }
 
 .box-of-room-in-calendar {
-    border: 1px solid black;
+    /* border: 1px solid black; */
     height: 50px;
     width: 55px;
     background-color: white;
@@ -34,4 +35,106 @@
 .box-of-day-in-calendar {
     height: 50px;
     width: 30px;
+}
+
+.space-in-page-of-calendar {
+    height: 15px;
+    width: 950px;
+    margin-right: 20px;
+    background-color: rgb(32, 162, 160);
+    border-top-right-radius: 25px;
+}
+
+.space-in-page-of-calendar2 {
+    height: 18px;
+    width: 950px;
+    margin-right: 20px;
+    background-color: rgb(32, 162, 160);
+    border-bottom-right-radius: 25px;
+}
+
+.container-of-days {
+    display: flex;
+    /* align-items: center;
+    justify-content: center; */
+    width: 950px;
+    /* background-color: brown; */
+}
+
+#selection-type-of-rooms-in-calendar {
+    display: flex;
+    /* border: 1px solid black; */
+    height: 45px;
+    width: 250px;
+}
+
+#selection-type-of-room-in-calendar {
+    height: 45px;
+    width: 100px;
+}
+
+#selection-status-if-room-in-calendar {
+    height: 45px;
+    width: 100px;
+}
+
+#current-month-in-calendar {
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+    height: 45px;
+    width: 50px;
+   border-left: 1px solid black;
+}
+
+.range-in-calendar {
+    /* border: 1px solid black; */
+    height: 50px;
+    width: 950px;
+    display: flex;
+}
+
+.part-of-type-of-room-in-calendar {
+    /* border: 1px solid gray; */
+    height: 50px;
+    width: 250px;
+    background-color: rgb(32, 162, 160);
+}
+
+.comp-in-calendar {
+    border-left: 1px solid black;
+    height: 50px;
+    width: 35px;
+    background-color: rgb(214, 232, 232);
+}
+
+.part-of-days-in-calendar {
+    display: flex;
+    /* background-color: red; */
+    background-color: rgb(214, 232, 232);
+    height: 50px;
+    width: 702.5px;
+}
+
+.range-in-calendar {
+    border: 1px solid black;
+    height: 50px;
+    width: 948.5px;
+}
+
+.reserved-comp-in-calendar {
+     height: 50px;
+     width: 35px;
+     background-color: goldenrod;
+}
+
+.container-of-reserved-comp {
+    background-color: aqua;
+     border-radius: 40px;
+    height: max-content;
+    width: max-content;
+} 
+
+#page-of-setting-resreve-in-calendar {
+    
 }

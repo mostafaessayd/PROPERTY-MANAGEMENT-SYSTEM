@@ -6,8 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="x-icon" href="434741953_908476244407691_3458671040561510092_n.jpg">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    
+
     <link rel="stylesheet" href="../src/Style/styleOfContentDisplayPage.css">
+    <link rel="stylesheet" href="../src/Style/styleOfReservedComp.css">
+    <link rel="stylesheet" href="../src/Style/reservedPopUpStyle.css">
     <link rel="stylesheet" href="../src/Style/styleOfModifySettings.css">
     <link rel="stylesheet" href="../src/Style/styleOfDisplayInformation.css">
     <link rel="stylesheet" href="../src/Style/setTypeOfRoomsStyle.css">
@@ -146,7 +148,7 @@
 
         <!-- selection page -->
         <div class="selection-page" id="selection-page" style="display: none;">
-          
+
         </div>
         <!-- display information -->
         <div class="container-create-hotel" id="container-create-hotel" style="display: none;">
@@ -206,8 +208,8 @@
         <!-- display information -->
         <div class="page-of-archives" id="page-of-archives" style="display: none;">
             <!-- page of archives -->
-           
-            
+
+
         </div>
 
         <!-- display information -->
@@ -279,7 +281,26 @@
 
         <!-- display information -->
         <div id="page-of-calendar" style="display: none;">
-            <div style="display: flex;align-items: center;justify-content: center;width: 870px;margin-left: 63px;">
+           
+            
+            <div id="myModal" class="modal">
+                <!--  -->
+            </div>
+            <div class="space-in-page-of-calendar">
+                <!--  -->
+            </div>
+            <div class="container-of-days">
+                <div id="selection-type-of-rooms-in-calendar">
+                    <div id="selection-type-of-room-in-calendar">
+                        <!--  -->
+                    </div>
+                    <div id="selection-status-of-room-in-calendar">
+                        <!--  -->
+                    </div>
+                    <div id="current-month-in-calendar">
+                        <!--  -->
+                    </div>
+                </div>
                 <div id="days-in-calendar">
                     <!--  -->
                 </div>
@@ -287,12 +308,23 @@
             <div id="boocked-in-days">
                 <!--  -->
             </div>
+            <div class="space-in-page-of-calendar2">
+                <!--  -->
+            </div>
         </div>
 
+        <div id="page-of-resreve-in-calendar" style="display: none;">
+            <!-- created by Js -->
+        </div>
+
+        <div id="page-of-setting-resreve-in-calendar" style="display: none;">
+            <!-- created by Js -->
+        </div>
+        
         <!-- display information -->
         <div id="page-of-booking" style="display: none;">
             <div id="show-resident-in-booking">
-              
+
             </div>
             <div id="confirm-resident">
                 <button>confirm</button>
@@ -302,6 +334,7 @@
         <div class="page-of-add-acc" id="page-of-add-acc" style="display: none;">
 
         </div>
+
     </div>
 
     <div class="tooltip" id="tooltip"></div>

@@ -52,8 +52,8 @@ function rempleID() {
     idOfButtons.push('rooms');
     idOfButtons.push('Booking');
     idOfButtons.push('clock');
+    idOfButtons.push('calendar');
     idOfButtons.push('settings');
-    // idOfButtons.push('calendar');
     if (currentUser === 'admin') {
         idOfButtons.push('historique');
     }
@@ -68,6 +68,7 @@ function rempleID() {
     idOfContainerOfButtons.push('container-of-part-in-options-02');
     idOfContainerOfButtons.push('container-of-part-in-options-Booking');
     idOfContainerOfButtons.push('container-of-part-in-options-03');
+    idOfContainerOfButtons.push('container-of-part-in-options-calendar');
     idOfContainerOfButtons.push('container-of-part-in-options-04');
     // idOfContainerOfButtons.push('container-of-part-in-options-05');
     if (currentUser === 'admin') {
@@ -158,6 +159,7 @@ function isDesiredRoom(room, reserved, numberOdBeds, floorNumber, roomNumber) {
     ans &= checkEquality(room.isReserved, reserved);
     ans &= checkEquality(room.floorNumber, floorNumber);
     ans &= checkEquality(room.roomNumber, roomNumber);
+
     return ans;
 }
 
@@ -194,6 +196,7 @@ function createNeededDropDowns(numberOfFloors, numberOfRooms, maxNumberOfBeds, m
     for (let i = 0; i < arrayOfRoomTypes.length; i++) {
         divOfTypes += `<option value="${i}">${arrayOfRoomTypes[i].type}</option>`
     }
+
     var UI = `
         <div class="dropdown-container">
             <div class="dropdown-wrapper2" display: flex;>
@@ -260,6 +263,7 @@ function createNeededDropDowns(numberOfFloors, numberOfRooms, maxNumberOfBeds, m
                 case 'dropdown5': valueOfMixedStatus = getValueOfSelectionDropdown(selectedOption, false); break;
                 case 'dropdown6': valueOfTypeRoomDropDown = getValueOfSelectionDropdown(selectedOption, false); break;
             }
+
             generateTableOfRooms(hotel.listOfRooms, valueOfReservedDropdawn, valueOfBedsNumberDropdawn, valueOfFloorNumberDropdawn, valueOfRoomNumberDropdawn);
         });
     }
@@ -727,11 +731,11 @@ function generateClock() {
 
     for (let i = 0; i < targetResidents.length; i++) {
         if (targetResidents[i].isReserved === 'Reserved') {
-         for (let k = 0; k < targetResidents[i].numberOfBeds ; k++) {
-            if(targetResidents[i].statusOfBeds[k] === false )
-                continue;
-            
-            page += `
+            for (let k = 0; k < targetResidents[i].numberOfBeds; k++) {
+                if (targetResidents[i].statusOfBeds[k] === false)
+                    continue;
+
+                page += `
             <div class="current-resident" onclick="getInfoOfSelectedResident(${JSON.stringify(targetResidents[i].id).replace(/"/g, '&quot;')})">
                <div class="part-of-room">
                  <h2>
@@ -755,7 +759,7 @@ function generateClock() {
                </div>
                <div class="part-of-contdown">
                   <h2>
-                   ${1+Math.floor(Math.random()*100)}
+                   ${1 + Math.floor(Math.random() * 100)}
                   </h2>
                </div>
                <div class="part-of-gender-in-clock"style="background-color: ${targetResidents[i].genderOfResident === 'Male' ? 'blue' : 'pink'};">
@@ -769,9 +773,9 @@ function generateClock() {
                   </h2>
                </div>
             </div>`;
-        }
+            }
 
-    }
+        }
     }
 
     document.getElementById('show-current-residents').innerHTML = page;
@@ -869,6 +873,7 @@ function generateMenuOfButtons() {
         <div class = "container-of-part-in-options" id="container-of-part-in-options-02"><div class="menu-item" id="rooms" onclick="goToPageOfRooms()"><div class="icon-of-button"><i class="fa-solid fa-door-open"></i></div><div class="text-of-button">Rooms</div></div></div>
         <div class = "container-of-part-in-options" id="container-of-part-in-options-Booking"><div class="menu-item" id="Booking" onclick="getBookingPage()"><div class="icon-of-button"><i class="fa-solid fa-house-signal"></i></div><div class="text-of-button">Booking</div></div></div>
         <div class = "container-of-part-in-options" id="container-of-part-in-options-03"><div class="menu-item" id="clock" onclick="getPageOfClock()"><div class="icon-of-button"><i class="fa-solid fa-magnifying-glass"></i></i></div><div class="text-of-button">Search</div></div></div>
+        <div class = "container-of-part-in-options" id="container-of-part-in-options-calendar"><div class="menu-item" id="calendar" onclick="getBookingPage()"><div class="icon-of-button"><i class="fa-regular fa-calendar"></i></div><div class="text-of-button">Calendar</div></div></div>
         <div class = "container-of-part-in-options" id="container-of-part-in-options-04"><div class="menu-item" id="settings" onclick="generatePageOfSettings()"><div class="icon-of-button"><i class="fa-solid fa-gear"></i></div><div class="text-of-button">Settings</div></div></div>
         `;
 
@@ -1161,83 +1166,424 @@ function addDaysToDate(initialDate, days) {
     return result;
 }
 
+var weekDay;
+var Day;
+var currentMonth;
+
 function formatDate(date) {
-    const options = { weekday: 'short', day: 'numeric', month: 'short' };
+    const options0 = { month: 'short' };
+    const options = { day: 'numeric' };
+    const options2 = { weekday: 'short' };
+
     const formattedDate = date.toLocaleDateString('en-US', options);
+
+    Day = date.toLocaleDateString('en-US', options);
+    weekDay = date.toLocaleDateString('en-US', options2);
+    //  currentMonth = date.toLocaleDateString('en-US', options0);
+
+    // Day = options.day;
+
     return formattedDate.replace(/,/g, ''); // تزيل الفواصل
 }
 
+var currentDuration;
+var idOfResident = [];
+let lastIdOFResident = 0;
+var pixeles = [];
+var namesOfResidents = [];
 
 //generate calendar
 function generateCalendar() {
     var startDate = new Date();
+
+    const monthNames = [
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    ];
+
+    currentMonth = monthNames[startDate.getMonth()];
+
     var page = ``;
-    for (let i = 0; i < 28; i++) {
+    for (let i = 0; i < 20; i++) {
         var currentDate = addDaysToDate(startDate, i);
-        page += `<div class="box-of-day">${formatDate(currentDate)}</div>`;
+        formatDate(currentDate);
+        // page += `<div class="box-of-day">${formatDate(currentDate)}</div>`;
+        page += `
+        <div class="box-of-day">
+           <div class="box-of-day-day-part">
+             ${Day}
+           </div>
+           <div class="box-of-day-weekday-part">
+            ${weekDay}
+           </div>
+        </div>`;
     }
+
+    var crMonth = `<div style="margin-top:8px;margin-left:8px;width:max-content;"><h2 style="color:black;">${currentMonth}</h2></div>`
+    document.getElementById('current-month-in-calendar').innerHTML = crMonth;
+
 
     document.getElementById('days-in-calendar').innerHTML = page;
 
+    var selectOfTypeInCalendar = '<option value="0">All</option>';
+    for (let i = 0; i < arrayOfRoomTypes.length; i++) {
+        selectOfTypeInCalendar += `<option value="${i}">${arrayOfRoomTypes[i].type}</option>`
+    }
+
+    document.getElementById('selection-type-of-room-in-calendar').innerHTML = `
+     <div class="dropdown-wrapper2" display: flex; style="margin-left:0px;">
+             <button class="text-of-select" style="width:39px;">types </button>
+                <select class="dropdown" style="width:49px;" id="select-of-type-room-in-calendar">
+                   ${selectOfTypeInCalendar}
+                </select>
+    </div>
+    `;
+
+    document.getElementById('selection-status-of-room-in-calendar').innerHTML = `
+    <div class="dropdown-wrapper2" display: flex; style="margin-left:-1px;">
+            <button class="text-of-select" >Status</button>
+                <select class="dropdown" >
+                    <option value="0">All</option>
+                    <option value="1">Reserved</option>
+                    <option value="2">Unbooked</option>
+                </select>
+            </div>
+    `;
+
     page = '<table>';
     for (let i = 0; i < hotel.listOfRooms.length; i++) {
-        if (hotel.listOfRooms[i].isReserved === 'Reserved') {
+
+        for (let k = 0; k < hotel.listOfRooms[i].numberOfBeds; k++) {
             page += '<tr>';
-            page += '<td>';
-            page += '<div style="display:flex;background-color: red;">'
             page += `
-           <div class="box-of-room-in-calendar">
-           floor ${hotel.listOfRooms[i].floorNumber}
-           room ${hotel.listOfRooms[i].roomNumber}
-           </div>
-          `;
-            startDate = new Date();
-            let j = 0;
-            var currentDate = addDaysToDate(startDate, j);
-            while (isDateWithinRange(hotel.listOfRooms[i].startDate, hotel.listOfRooms[i].endDate, currentDate) === false && j < 28) {
-                page += `
-             <div class="box-of-day-in-calendar" style="background-color: red;border: 1px solid red;">
-             </div>`;
-                j++;
-                currentDate = addDaysToDate(startDate, j);
-            }
-            var k = 0;
-            var val;
-            var cur;
-            while (isDateWithinRange(hotel.listOfRooms[i].startDate, hotel.listOfRooms[i].endDate, currentDate) === true && j < 28) {
-                val = (k === 0 ? 20 : 0);
-                j++;
-                k = 1;
-                currentDate = addDaysToDate(startDate, j);
-                if (isDateWithinRange(hotel.listOfRooms[i].startDate, hotel.listOfRooms[i].endDate, currentDate) === false || j === 28) {
-                    cur = 20;
-                } else {
-                    cur = 0;
+            <div class="range-in-calendar">
+            <div class="part-of-type-of-room-in-calendar">
+             <div class="id-of-room-in-calrndar">
+              F${hotel.listOfRooms[i].floorNumber}
+              -R${hotel.listOfRooms[i].roomNumber}
+              -B${k + 1}${hotel.listOfRooms[i].positionOfBeds[k]}
+              </div>
+              <div class="type-of-room-in-calendar">
+               ${getTypeOfRoom(hotel.listOfRooms[i])}
+              </div>
+             </div>`
+
+            var background = (hotel.listOfRooms[i].statusOfBeds[k] ? 'green' : 'red');
+
+            page += `<div class="part-of-days-in-calendar">`
+            for (let j = 0; j < 20;) {
+
+               var dateOftoday = new Date();
+
+              //  dateOftoday.setDate(dateOftoday.getDate() + j);
+                
+              let answer = isReservedDate(hotel.listOfRooms[i].listOfResidentsInBed[k] , j);
+
+                if (answer === "NO") {
+                    page += `
+                 <div class="comp-in-calendar" onclick="reserveInCalendar(
+                 ${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} , 
+                 ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
+                 ${JSON.stringify(k).replace(/"/g, '&quot;')} ,
+                 ${JSON.stringify(j).replace(/"/g, '&quot;')} ,
+                 ${JSON.stringify(hotel.listOfRooms[i]).replace(/"/g, '&quot;')}
+                 )">
+                  
+                 </div>
+                      `;
+                      j++;
                 }
-                page += `
-             <div class="box-of-day-in-calendar" style="background-color: green;border: 1px solid green;border-top-left-radius: ${val}px;border-bottom-left-radius: ${val}px;border-top-right-radius: ${cur}px;border-bottom-right-radius: ${cur}px;"onclick="showInfoOfClickedResident(${JSON.stringify(hotel.listOfRooms[i]).replace(/"/g, '&quot;')})">
-             </div>`;
+                else {
+                    let d = 1;
+                    let currentID = lastIdOFResident.toString();
+                    let alf = 1;
+                   // let crd = '<div id="' + currentID +'">';
+                    if(currentDuration > 1){
+                    page += `
+                    <div class="reserved-comp-in-calendar" style="border-top-left-radius: 40px;">
+                     
+                    </div>`;
+                    }else {
+                        page += `
+                        <div class="reserved-comp-in-calendar" style="border-top-left-radius: 40px;border-bottom-right-radius: 40px;">
+                         <h3>${answer}</h3>
+                        </div>`;
+                    }
+                    j++;
+                 while(d < currentDuration - 1 && j < 19){
+                    page += `
+                 <div class="reserved-comp-in-calendar">
+                  <h3>${(alf++ === 1 ? answer : "")}</h3>
+                 </div>
+                      `;
+                      j++;
+                      d++;
+                 }
+                 
+                 if(currentDuration > 1){
+                    page += `
+                    <div class="reserved-comp-in-calendar" style="border-bottom-right-radius: 40px;">
+                     
+                    </div>`;
+                    j++;
+                    }else if(currentDuration === 2) {
+                        page += `
+                    <div class="reserved-comp-in-calendar" style="border-bottom-right-radius: 40px;">
+                     <h3>${answer}</h3>
+                    </div>`;
+                    j++; 
+                    }
+
+                 // crd += '</div>'
+
+                 // page += crd;
+                  pixeles.push(currentDuration);
+                  namesOfResidents.push(answer);
+                  lastIdOFResident++;
+                }
             }
 
-            while (isDateWithinRange(hotel.listOfRooms[i].startDate, hotel.listOfRooms[i].endDate, currentDate) === false && j < 28) {
-                page += `
-             <div class="box-of-day-in-calendar" style="background-color: red;border: 1px solid red;">
-             </div>`;
-                j++;
-                currentDate = addDaysToDate(startDate, j);
-            }
-
-            page += '</div>'
-            page += '</td>'
+            page += `</div>`
+            page += `</div>`
             page += '</tr>';
         }
     }
 
     page += '</table>';
 
-
     document.getElementById('boocked-in-days').innerHTML = page;
+    
+    // for(let i = 0 ; i < lastIdOFResident ; i++){
+    // document.getElementById(i.toString()).style.backgroundColor = 'red';
+    // let p = 35 * pixeles[i];
+    // document.getElementById(i.toString()).style.text = namesOfResidents[i];
+    // document.getElementById(i.toString()).style.width = `${p}px`;
+    // }
+    
 }
+
+var targetRoom;
+var targetBed;
+var x;
+var y;
+numberOfResident;
+
+function deleteResidentInBed(floor , room , Bed) {
+    
+    targetBed = Bed;
+    x = floor;
+    y = room;
+
+    for(let i = 0 ; i < hotel.listOfRooms.length ; i++) {
+        if(hotel.listOfRooms[i].floorNumber === floor && hotel.listOfRooms[i].roomNumber === room) {
+         //   hotel.listOfRooms[i].listOfResidentsInBed[Bed]
+        }
+    }
+}
+
+function fr(date) {
+    var day = date.getDate().toString().padStart(2 , '0');
+    var month = (date.getMonth() + 1).toString().padStart(2 , '0');
+    var year = date.getFullYear();
+
+    return `${day}/${month}/${year}`;
+
+}
+
+function getSettingReservedInCalendar() {
+   
+}
+
+function isReservedDate(listOfResidents, nbrCase) {
+  var curDate = new Date();
+  curDate.setDate(curDate.getDate() + nbrCase);
+  
+  for(let i = 0 ; i < listOfResidents.length ; i++) {
+
+    var thisDate = new Date(listOfResidents[i].startDate);
+    if(thisDate.getDay() === curDate.getDay() && thisDate.getMonth() === curDate.getMonth() && thisDate.getFullYear() === curDate.getFullYear()){
+    currentDuration = listOfResidents[i].durationOfReservation;
+    numberOfResident = i;
+    return listOfResidents[i].firstName + ' ' + listOfResidents[i].lastName;
+    }
+  }
+
+  return "NO";
+}
+
+function saveReserveInCalendar() {
+   
+    var firstName = document.getElementById('firstName-in-calendar').value;
+    var lastName = document.getElementById('lastName-in-calendar').value;
+    var startDate = document.getElementById('startDate-in-calendar').value;
+    var duration = document.getElementById('duration-in-calendar').value;
+    var birthDate = document.getElementById('birthdate-in-calendar').value;
+    var arrivalTime = document.getElementById('arrivalTime-in-calendar').value;
+    var bankCardNumber = document.getElementById('cardNumber-in-calendar').value;
+    var email = document.getElementById('email-in-calendar').value;
+    var country = document.getElementById('country-in-calendar').value;
+    var gender = document.getElementById('gender-in-calendar').value;
+
+    for (let i = 0; i < hotel.listOfRooms.length; i++) {
+        if (hotel.listOfRooms[i].floorNumber === x && hotel.listOfRooms[i].roomNumber === y) {
+            hotel.listOfRooms[i].isReserved = '';
+            hotel.listOfRooms[i].statusOfBeds[targetBed] = true;
+            hotel.listOfRooms[i].durationOfReservation[targetBed] = duration;
+            hotel.listOfRooms[i].startDateOfResidentInBeds[targetBed] = startDate;
+            hotel.listOfRooms[i].residentOfBeds[targetBed] = new Resident(firstName
+                ,
+                lastName,
+                email,
+                country,
+                arrivalTime,
+                bankCardNumber,
+                duration);
+
+            var newResident = new rsdnt(
+                firstName,
+                lastName,
+                country,
+                email,
+                arrivalTime,
+                startDate,
+                birthDate,
+                gender,
+                duration,
+                bankCardNumber,
+                123
+            );
+
+            hotel.listOfRooms[i].listOfResidentsInBed[targetBed].push(newResident);
+
+            isReservedDate(hotel.listOfRooms[i].listOfResidentsInBed[targetBed][0]);
+
+            for (let k = 0; k < hotel.listOfRooms[i].listOfResidentsInBed[targetBed].length - 1; k++) {
+                for (let j = k + 1; j < hotel.listOfRooms[i].listOfResidentsInBed[targetBed].length; j++) {
+                    if (hotel.listOfRooms[i].listOfResidentsInBed[targetBed][k].startDate > hotel.listOfRooms[i].listOfResidentsInBed[targetBed][j].startDate) {
+                        var temp = hotel.listOfRooms[i].listOfResidentsInBed[targetBed][k];
+                        hotel.listOfRooms[i].listOfResidentsInBed[targetBed][k] = hotel.listOfRooms[i].listOfResidentsInBed[targetBed][j];
+                        hotel.listOfRooms[i].listOfResidentsInBed[targetBed][j] = temp;
+                    }
+                }
+            }
+
+            break;
+        }
+    }
+
+    generateTableOfRooms(hotel.listOfRooms, valueOfReservedDropdawn, valueOfBedsNumberDropdawn, valueOfFloorNumberDropdawn, valueOfRoomNumberDropdawn);
+
+    generateCalendar();
+    getCalendarPage();
+}
+
+function cancelReserveInCalendar() {
+    getCalendarPage();
+}
+
+//alt reserve
+function reserveInCalendar(floorNumber, roomNumber, numberOfBed, numberOfCase, room) {
+    targetRoom = room;
+    targetBed = numberOfBed;
+    x = floorNumber;
+    y = roomNumber;
+
+    //  alert('f : ' + floorNumber + '\nR : ' + roomNumber + '\nB : ' + numberOfBed + 1);
+
+    var page = `
+        <form class="booking-form-in-calendar" id="bookingForm">
+            <h2>Floor ${floorNumber} Room ${roomNumber} Bed ${numberOfBed + 1} </h2>
+            <div class="form-group">
+                <label for="firstName">first name</label>
+                <input type="text" id="firstName-in-calendar" name="firstName" required>
+            </div>
+            <div class="form-group">
+                <label for="lastName">last name</label>
+                <input type="text" id="lastName-in-calendar" name="lastName" required>
+            </div>
+            <div class="form-group">
+                <label for="startDate">start date</label>
+                <input type="date" id="startDate-in-calendar" name="startDate" required>
+            </div>
+            <div class="form-group">
+                <label for="duration">duration of reservation</label>
+                <input type="number" id="duration-in-calendar" name="duration" required>
+            </div>
+            <div class="form-group">
+                <label for="birthdate">date of birth</label>
+                <input type="date" id="birthdate-in-calendar" name="birthdate" required>
+            </div>
+            <div class="form-group">
+                <label for="cardNumber">bank card number</label>
+                <input type="text" id="cardNumber-in-calendar" name="cardNumber" required>
+            </div>
+            <div class="form-group">
+                <label for="country">country</label>
+                <input type="text" id="country-in-calendar" name="country" required>
+            </div>
+            <div class="form-group">
+                <label for="arrivalTime">arrival time</label>
+                <input type="time" id="arrivalTime-in-calendar" name="arrivalTime" required>
+            </div>
+            <div class="form-group" style="display:none;">
+                <label for="arrivalTime">arrival time</label>
+                <input type="time" id="arrivalTime-in-calendar" name="arrivalTime" required>
+            </div>
+            <div class="form-group">
+                <label for="gender">sex</label>
+                <select id="gender-in-calendar" name="gender" required>
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="email">email</label>
+                <input type="email" id="email-in-calendar" name="email" required>
+            </div>
+            <div class="form-buttons">
+                <button type="submit" onclick="saveReserveInCalendar()">save</button>
+                <button type="button" id="cancelButton" onclick="cancelReserveInCalendar()">cancel</button>
+            </div>
+        </form>
+    `;
+
+    document.getElementById('page-of-resreve-in-calendar').innerHTML = page;
+
+    document.getElementById(currentIdInDisplayInformation).style.display = 'none';
+    document.getElementById(currentIdInModifysettings).style.display = 'none';
+    document.getElementById(currentPage).style.display = 'none';
+    currentPage = 'page-of-resreve-in-calendar';
+    document.getElementById(currentPage).style.display = 'block';
+
+    const dateInput = document.getElementById('startDate-in-calendar');
+
+    // Get the current date
+    const today = new Date();
+
+    today.setDate(today.getDate() + numberOfCase);
+
+    // Format the date as YYYY-MM-DD
+    const year = today.getFullYear();
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const day = String(today.getDate()).padStart(2, '0');
+
+    const formattedDate = `${year}-${month}-${day}`;
+
+    // Set the value of the input field to the formatted date
+    dateInput.value = formattedDate;
+}
+
+//function of opoup
+function cancelBtn() {
+    alert('ll');
+    //  modal.style.display = "none";
+    //getCalendarPage();
+}
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("okBtn");
+var span = document.getElementsByClassName("close")[0];
+//var cancelBtn = document.getElementsByClassName("cancel")[0];
+
 
 //get calendar page
 function getCalendarPage() {
@@ -1298,7 +1644,7 @@ function generatePageOfPayment() {
 `;
     for (let i = 0; i < hotel.listOfRooms.length; i++) {
         // if (hotel.listOfRooms[i].isReserved === 'Reserved') {
-        for (let k = 0; k < hotel.listOfRooms[i].numberOfBeds ; k++) {
+        for (let k = 0; k < hotel.listOfRooms[i].numberOfBeds; k++) {
             if (hotel.listOfRooms[i].statusOfBeds[k] === false)
                 continue;
 
@@ -1772,10 +2118,10 @@ function addNumberFloorAndRooms() {
     }
 
     // Add success image after the AJAX calls are completed
-    
+
     var selectionPageDiv = document.getElementById('selection-page');
     var successImage = document.createElement('img');
-    selectionPageDiv.innerHTML=' ';
+    selectionPageDiv.innerHTML = ' ';
     successImage.src = 'success-icon-10.png';
     successImage.alt = 'Success Image';
     successImage.style.width = '400px';  // Set width to 400px
@@ -1787,10 +2133,10 @@ function addNumberFloorAndRooms() {
 
     // Display the selection-page
     selectionPageDiv.style.display = 'block';
-    currentPage='selection-page';
-    
+    currentPage = 'selection-page';
+
     document.querySelector('.container-create-hotel').style.display = 'none';
-    
+
 }
 
 /***************************************************/
@@ -1860,4 +2206,23 @@ function myAllocator() {
     for (let i = 0; i < listOfResidents.length; i++) {
 
     }
+}
+
+function getTypeOfRoom(room) {
+    for (let i = 0; i < arrayOfRoomTypes.length; i++) {
+        var isTarget = true;
+
+        isTarget &= arrayOfRoomTypes[i].isMixed === room.statusOfMixed;
+        isTarget &= arrayOfRoomTypes[i].numberOfAllBeds === room.numberOfBeds;
+        isTarget &= arrayOfRoomTypes[i].femaleBeds === room.NumberOfFemaleBeds;
+        isTarget &= arrayOfRoomTypes[i].maleBeds === room.NumberOfMaleBeds;
+
+        //  console.log(isTarget);
+        // alert('pp');
+        if (isTarget) {
+            return arrayOfRoomTypes[i].type;
+        }
+    }
+
+    return "All";
 }
