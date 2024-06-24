@@ -1221,7 +1221,7 @@ function generateCalendar() {
 
     var crMonth = `<div style="margin-top:8px;margin-left:8px;width:max-content;"><h2 style="color:black;">${currentMonth}</h2></div>`
     document.getElementById('current-month-in-calendar').innerHTML = crMonth;
-    
+
 
     document.getElementById('days-in-calendar').innerHTML = page;
 
@@ -1261,11 +1261,32 @@ function generateCalendar() {
 
     page = '<table>';
     for (let i = 0; i < hotel.listOfRooms.length; i++) {
-        console.log(getTypeOfRoom(hotel.listOfRooms[i]));
+        // console.log(getTypeOfRoom(hotel.listOfRooms[i]));
+        var ans = true;
+        for (let f = 0; f < arrayOfRoomTypes.length; f++) {
+            if (arrayOfRoomTypes[f].type === selectType) {
+                if (hotel.listOfRooms[i].statusOfMixed !== arrayOfRoomTypes[f].isMixed) {
+                    ans = false;
+                } else {
+                    if (arrayOfRoomTypes[f].isMixed) {
+                        ans &= hotel.listOfRooms[i].numberOfBeds === arrayOfRoomTypes[f].numberOfAllBeds;
+                        ans &= arrayOfRoomTypes[f].maleBeds * arrayOfRoomTypes[f].femaleBeds !== 0;
+                    } else {
+                        ans &= arrayOfRoomTypes[f].femaleBeds === hotel.listOfRooms[i].NumberOfFemaleBeds;
+                        ans &= arrayOfRoomTypes[f].maleBeds === hotel.listOfRooms[i].NumberOfMaleBeds;
+                        ans &= arrayOfRoomTypes[f].numberOfAllBeds === hotel.listOfRooms[i].numberOfBeds;
+                        // ans &= room.NumberOfFemaleBeds + room.NumberOfMaleBeds === room.numberOfBeds;
+                    }
+                }
+                break;
+            }
+        }
 
-        if(getTypeOfRoom(hotel.listOfRooms[i]) !== selectType && selectType !== "All"){
+        if (ans !== 1 && selectType !== "All") {
             continue;
         }
+
+        console.log(selectType);
 
         for (let k = 0; k < hotel.listOfRooms[i].numberOfBeds; k++) {
             page += '<tr>';
@@ -1283,15 +1304,15 @@ function generateCalendar() {
              </div>`
 
             var background = (hotel.listOfRooms[i].statusOfBeds[k] ? 'green' : 'red');
-            
+
             page += `<div class="part-of-days-in-calendar">`
             for (let j = 0; j < 20;) {
 
-               var dateOftoday = new Date();
+                var dateOftoday = new Date();
 
-              //  dateOftoday.setDate(dateOftoday.getDate() + j);
-                
-              let answer = isReservedDate(hotel.listOfRooms[i].listOfResidentsInBed[k] , j);
+                //  dateOftoday.setDate(dateOftoday.getDate() + j);
+
+                let answer = isReservedDate(hotel.listOfRooms[i].listOfResidentsInBed[k], j);
 
                 if (answer === "NO") {
                     page += `
@@ -1305,55 +1326,55 @@ function generateCalendar() {
                   
                  </div>
                       `;
-                      j++;
+                    j++;
                 }
                 else {
                     let d = 1;
                     let currentID = lastIdOFResident.toString();
                     let alf = 1;
-                   // let crd = '<div id="' + currentID +'">';
-                    if(currentDuration > 1){
-                    page += `
+                    // let crd = '<div id="' + currentID +'">';
+                    if (currentDuration > 1) {
+                        page += `
                     <div class="reserved-comp-in-calendar" style="border-top-left-radius: 40px;">
                      
                     </div>`;
-                    }else {
+                    } else {
                         page += `
                         <div class="reserved-comp-in-calendar" style="border-top-left-radius: 40px;border-bottom-right-radius: 40px;">
                          <h3>${answer}</h3>
                         </div>`;
                     }
                     j++;
-                 while(d < currentDuration - 1 && j < 19){
-                    page += `
+                    while (d < currentDuration - 1 && j < 19) {
+                        page += `
                  <div class="reserved-comp-in-calendar">
                   <h3>${(alf++ === 1 ? answer : "")}</h3>
                  </div>
                       `;
-                      j++;
-                      d++;
-                 }
-                 
-                 if(currentDuration > 1){
-                    page += `
+                        j++;
+                        d++;
+                    }
+
+                    if (currentDuration > 1) {
+                        page += `
                     <div class="reserved-comp-in-calendar" style="border-bottom-right-radius: 40px;">
                      
                     </div>`;
-                    j++;
-                    }else if(currentDuration === 2) {
+                        j++;
+                    } else if (currentDuration === 2) {
                         page += `
                     <div class="reserved-comp-in-calendar" style="border-bottom-right-radius: 40px;">
                      <h3>${answer}</h3>
                     </div>`;
-                    j++; 
+                        j++;
                     }
 
-                 // crd += '</div>'
+                    // crd += '</div>'
 
-                 // page += crd;
-                  pixeles.push(currentDuration);
-                  namesOfResidents.push(answer);
-                  lastIdOFResident++;
+                    // page += crd;
+                    pixeles.push(currentDuration);
+                    namesOfResidents.push(answer);
+                    lastIdOFResident++;
                 }
             }
 
@@ -1366,14 +1387,14 @@ function generateCalendar() {
     page += '</table>';
 
     document.getElementById('boocked-in-days').innerHTML = page;
-    
+
     // for(let i = 0 ; i < lastIdOFResident ; i++){
     // document.getElementById(i.toString()).style.backgroundColor = 'red';
     // let p = 35 * pixeles[i];
     // document.getElementById(i.toString()).style.text = namesOfResidents[i];
     // document.getElementById(i.toString()).style.width = `${p}px`;
     // }
-    
+
 }
 
 var targetRoom;
@@ -1382,22 +1403,22 @@ var x;
 var y;
 var numberOfResident;
 
-function deleteResidentInBed(floor , room , Bed) {
-    
+function deleteResidentInBed(floor, room, Bed) {
+
     targetBed = Bed;
     x = floor;
     y = room;
 
-    for(let i = 0 ; i < hotel.listOfRooms.length ; i++) {
-        if(hotel.listOfRooms[i].floorNumber === floor && hotel.listOfRooms[i].roomNumber === room) {
-         //   hotel.listOfRooms[i].listOfResidentsInBed[Bed]
+    for (let i = 0; i < hotel.listOfRooms.length; i++) {
+        if (hotel.listOfRooms[i].floorNumber === floor && hotel.listOfRooms[i].roomNumber === room) {
+            //   hotel.listOfRooms[i].listOfResidentsInBed[Bed]
         }
     }
 }
 
 function fr(date) {
-    var day = date.getDate().toString().padStart(2 , '0');
-    var month = (date.getMonth() + 1).toString().padStart(2 , '0');
+    var day = date.getDate().toString().padStart(2, '0');
+    var month = (date.getMonth() + 1).toString().padStart(2, '0');
     var year = date.getFullYear();
 
     return `${day}/${month}/${year}`;
@@ -1405,28 +1426,28 @@ function fr(date) {
 }
 
 function getSettingReservedInCalendar() {
-   
+
 }
 
 function isReservedDate(listOfResidents, nbrCase) {
-  var curDate = new Date();
-  curDate.setDate(curDate.getDate() + nbrCase);
-  
-  for(let i = 0 ; i < listOfResidents.length ; i++) {
+    var curDate = new Date();
+    curDate.setDate(curDate.getDate() + nbrCase);
 
-    var thisDate = new Date(listOfResidents[i].startDate);
-    if(thisDate.getDay() === curDate.getDay() && thisDate.getMonth() === curDate.getMonth() && thisDate.getFullYear() === curDate.getFullYear()){
-    currentDuration = listOfResidents[i].durationOfReservation;
-    numberOfResident = i;
-    return listOfResidents[i].firstName + ' ' + listOfResidents[i].lastName;
+    for (let i = 0; i < listOfResidents.length; i++) {
+
+        var thisDate = new Date(listOfResidents[i].startDate);
+        if (thisDate.getDay() === curDate.getDay() && thisDate.getMonth() === curDate.getMonth() && thisDate.getFullYear() === curDate.getFullYear()) {
+            currentDuration = listOfResidents[i].durationOfReservation;
+            numberOfResident = i;
+            return listOfResidents[i].firstName + ' ' + listOfResidents[i].lastName;
+        }
     }
-  }
 
-  return "NO";
+    return "NO";
 }
 
 function saveReserveInCalendar() {
-   
+
     var firstName = document.getElementById('firstName-in-calendar').value;
     var lastName = document.getElementById('lastName-in-calendar').value;
     var startDate = document.getElementById('startDate-in-calendar').value;
@@ -2223,17 +2244,27 @@ function myAllocator() {
 }
 
 function getTypeOfRoom(room) {
-    for (let i = 0; i < arrayOfRoomTypes.length; i++) {
-        var isTarget = true;
-        
-        isTarget &= arrayOfRoomTypes[i].isMixed === room.statusOfMixed;
-        isTarget &= arrayOfRoomTypes[i].numberOfAllBeds === room.numberOfBeds;
-        isTarget &= arrayOfRoomTypes[i].femaleBeds === room.NumberOfFemaleBeds;
-        isTarget &= arrayOfRoomTypes[i].maleBeds === room.NumberOfMaleBeds;
-        
-        if (isTarget) {
-            return arrayOfRoomTypes[i].type;
+
+    for (let f = 0; f < arrayOfRoomTypes.length; f++) {
+        var ans = true;
+        if (room.statusOfMixed !== arrayOfRoomTypes[f].isMixed) {
+            ans = false;
+        } else {
+            if (arrayOfRoomTypes[f].isMixed) {
+                ans &= room.numberOfBeds === arrayOfRoomTypes[f].numberOfAllBeds;
+                ans &= arrayOfRoomTypes[f].maleBeds * arrayOfRoomTypes[f].femaleBeds !== 0;
+            } else {
+                ans &= arrayOfRoomTypes[f].femaleBeds === room.NumberOfFemaleBeds;
+                ans &= arrayOfRoomTypes[f].maleBeds === room.NumberOfMaleBeds;
+                ans &= arrayOfRoomTypes[f].numberOfAllBeds === room.numberOfBeds;
+                // ans &= room.NumberOfFemaleBeds + room.NumberOfMaleBeds === room.numberOfBeds;
+            }
         }
+
+        if (ans === 1) {
+            return arrayOfRoomTypes[f].type;
+        }
+
     }
 
     return "All";
