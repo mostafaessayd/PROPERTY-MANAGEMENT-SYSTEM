@@ -116,7 +116,6 @@ function isDesiredRoom(room, reserved, numberOdBeds, floorNumber, roomNumber) {
     }
 
     var ans = true;
-    console.log(room.NumberOfFemaleBeds + ' ' + room.NumberOfMaleBeds + ' ' + room.numberOfBeds);
     ans &= (room.NumberOfFemaleBeds + room.NumberOfMaleBeds === room.numberOfBeds);
     if (valueOfMixedStatus !== -1) {
         if (valueOfMixedStatus === 'mixed') {
@@ -1191,6 +1190,7 @@ var idOfResident = [];
 let lastIdOFResident = 0;
 var pixeles = [];
 var namesOfResidents = [];
+var selectType = "All";
 
 //generate calendar
 function generateCalendar() {
@@ -1221,13 +1221,21 @@ function generateCalendar() {
 
     var crMonth = `<div style="margin-top:8px;margin-left:8px;width:max-content;"><h2 style="color:black;">${currentMonth}</h2></div>`
     document.getElementById('current-month-in-calendar').innerHTML = crMonth;
-
+    
 
     document.getElementById('days-in-calendar').innerHTML = page;
 
     var selectOfTypeInCalendar = '<option value="0">All</option>';
     for (let i = 0; i < arrayOfRoomTypes.length; i++) {
         selectOfTypeInCalendar += `<option value="${i}">${arrayOfRoomTypes[i].type}</option>`
+    }
+
+    const initilaizeDropdawn = (ID) => {
+        document.getElementById(ID).addEventListener('change', function () {
+            const selectedOption = this.options[this.selectedIndex].text;
+            selectType = selectedOption;
+            generateCalendar();
+        });
     }
 
     document.getElementById('selection-type-of-room-in-calendar').innerHTML = `
@@ -1238,6 +1246,7 @@ function generateCalendar() {
                 </select>
     </div>
     `;
+    initilaizeDropdawn('select-of-type-room-in-calendar');
 
     document.getElementById('selection-status-of-room-in-calendar').innerHTML = `
     <div class="dropdown-wrapper2" display: flex; style="margin-left:-1px;">
@@ -1252,6 +1261,11 @@ function generateCalendar() {
 
     page = '<table>';
     for (let i = 0; i < hotel.listOfRooms.length; i++) {
+        console.log(getTypeOfRoom(hotel.listOfRooms[i]));
+
+        if(getTypeOfRoom(hotel.listOfRooms[i]) !== selectType && selectType !== "All"){
+            continue;
+        }
 
         for (let k = 0; k < hotel.listOfRooms[i].numberOfBeds; k++) {
             page += '<tr>';
@@ -1269,7 +1283,7 @@ function generateCalendar() {
              </div>`
 
             var background = (hotel.listOfRooms[i].statusOfBeds[k] ? 'green' : 'red');
-
+            
             page += `<div class="part-of-days-in-calendar">`
             for (let j = 0; j < 20;) {
 
@@ -1366,7 +1380,7 @@ var targetRoom;
 var targetBed;
 var x;
 var y;
-numberOfResident;
+var numberOfResident;
 
 function deleteResidentInBed(floor , room , Bed) {
     
@@ -2211,14 +2225,12 @@ function myAllocator() {
 function getTypeOfRoom(room) {
     for (let i = 0; i < arrayOfRoomTypes.length; i++) {
         var isTarget = true;
-
+        
         isTarget &= arrayOfRoomTypes[i].isMixed === room.statusOfMixed;
         isTarget &= arrayOfRoomTypes[i].numberOfAllBeds === room.numberOfBeds;
         isTarget &= arrayOfRoomTypes[i].femaleBeds === room.NumberOfFemaleBeds;
         isTarget &= arrayOfRoomTypes[i].maleBeds === room.NumberOfMaleBeds;
-
-        //  console.log(isTarget);
-        // alert('pp');
+        
         if (isTarget) {
             return arrayOfRoomTypes[i].type;
         }
