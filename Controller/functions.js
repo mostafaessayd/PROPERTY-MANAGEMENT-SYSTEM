@@ -1281,12 +1281,12 @@ function generateCalendar() {
                 break;
             }
         }
-
+      
         if (ans !== 1 && selectType !== "All") {
             continue;
         }
 
-        console.log(selectType);
+        // console.log(selectType);
 
         for (let k = 0; k < hotel.listOfRooms[i].numberOfBeds; k++) {
             page += '<tr>';
@@ -1294,12 +1294,13 @@ function generateCalendar() {
             <div class="range-in-calendar">
             <div class="part-of-type-of-room-in-calendar">
              <div class="id-of-room-in-calrndar">
-              F${hotel.listOfRooms[i].floorNumber}
+              <!--F${hotel.listOfRooms[i].floorNumber}
               -R${hotel.listOfRooms[i].roomNumber}
-              -B${k + 1}${hotel.listOfRooms[i].positionOfBeds[k]}
+              -B${k + 1}${hotel.listOfRooms[i].positionOfBeds[k]}-->
               </div>
               <div class="type-of-room-in-calendar">
-               ${getTypeOfRoom(hotel.listOfRooms[i])}
+               room 
+               ${getTypeOfRoom(hotel.listOfRooms[i])}-Bed${k + 1}
               </div>
              </div>`
 
@@ -1332,22 +1333,35 @@ function generateCalendar() {
                     let d = 1;
                     let currentID = lastIdOFResident.toString();
                     let alf = 1;
+                    console.log(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color);
                     // let crd = '<div id="' + currentID +'">';
                     if (currentDuration > 1) {
                         page += `
-                    <div class="reserved-comp-in-calendar" style="border-top-left-radius: 40px;">
+                    <div class="reserved-comp-in-calendar" onclick="modifyReserveInCalendar(${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} ,
+                    ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
+                    ${JSON.stringify(k).replace(/"/g, '&quot;')} , 
+                    ${JSON.stringify(numberOfResident).replace(/"/g, '&quot;')} ,
+                    ${JSON.stringify(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident]).replace(/"/g, '&quot;')})" id="${currentID}" style="border-top-left-radius: 40px;background-color:${hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color};" onclick="modifyReserveInCalendar(${JSON.stringify(currentID).replace(/"/g, '&quot;')})">
                      
                     </div>`;
                     } else {
                         page += `
-                        <div class="reserved-comp-in-calendar" style="border-top-left-radius: 40px;border-bottom-right-radius: 40px;">
+                        <div class="reserved-comp-in-calendar"  onclick="modifyReserveInCalendar(${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} ,
+                    ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
+                    ${JSON.stringify(k).replace(/"/g, '&quot;')} , 
+                    ${JSON.stringify(numberOfResident).replace(/"/g, '&quot;')} ,
+                    ${JSON.stringify(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident]).replace(/"/g, '&quot;')})" id="${currentID}" style="background-color:${hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color};border-top-left-radius: 40px;border-bottom-right-radius: 40px;">
                          <h3>${answer}</h3>
                         </div>`;
                     }
                     j++;
                     while (d < currentDuration - 1 && j < 19) {
                         page += `
-                 <div class="reserved-comp-in-calendar">
+                 <div class="reserved-comp-in-calendar" id="${currentID}"  onclick="modifyReserveInCalendar(${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} ,
+                    ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
+                    ${JSON.stringify(k).replace(/"/g, '&quot;')} , 
+                    ${JSON.stringify(numberOfResident).replace(/"/g, '&quot;')} ,
+                    ${JSON.stringify(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident]).replace(/"/g, '&quot;')})" style="background-color:${hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color};">
                   <h3>${(alf++ === 1 ? answer : "")}</h3>
                  </div>
                       `;
@@ -1357,13 +1371,21 @@ function generateCalendar() {
 
                     if (currentDuration > 1) {
                         page += `
-                    <div class="reserved-comp-in-calendar" style="border-bottom-right-radius: 40px;">
+                    <div class="reserved-comp-in-calendar"  onclick="modifyReserveInCalendar(${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} ,
+                    ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
+                    ${JSON.stringify(k).replace(/"/g, '&quot;')} , 
+                    ${JSON.stringify(numberOfResident).replace(/"/g, '&quot;')} ,
+                    ${JSON.stringify(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident]).replace(/"/g, '&quot;')})" id="${currentID}" style="border-bottom-right-radius: 40px;background-color:${hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color};">
                      
                     </div>`;
                         j++;
                     } else if (currentDuration === 2) {
                         page += `
-                    <div class="reserved-comp-in-calendar" style="border-bottom-right-radius: 40px;">
+                    <div class="reserved-comp-in-calendar"  onclick="modifyReserveInCalendar(${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} ,
+                    ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
+                    ${JSON.stringify(k).replace(/"/g, '&quot;')} , 
+                    ${JSON.stringify(numberOfResident).replace(/"/g, '&quot;')} ,
+                    ${JSON.stringify(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident]).replace(/"/g, '&quot;')})" id="${currentID}" style="background-color:${hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color};border-bottom-right-radius: 40px;">
                      <h3>${answer}</h3>
                     </div>`;
                         j++;
@@ -1403,17 +1425,16 @@ var x;
 var y;
 var numberOfResident;
 
-function deleteResidentInBed(floor, room, Bed) {
-
-    targetBed = Bed;
-    x = floor;
-    y = room;
+function deleteResidentInBed(floor, room, Bed , numberOfResident) {
 
     for (let i = 0; i < hotel.listOfRooms.length; i++) {
         if (hotel.listOfRooms[i].floorNumber === floor && hotel.listOfRooms[i].roomNumber === room) {
-            //   hotel.listOfRooms[i].listOfResidentsInBed[Bed]
+            hotel.listOfRooms[i].listOfResidentsInBed[Bed].splice(numberOfResident , 1);
         }
     }
+
+    generateCalendar();
+    getCalendarPage();
 }
 
 function fr(date) {
@@ -1423,6 +1444,161 @@ function fr(date) {
 
     return `${day}/${month}/${year}`;
 
+}
+
+var choosenColor = "yellow";
+
+function modifyReserveInCalendar(floor , room , bed , nbrResident , resident) {
+
+
+    var page = `
+        <form class="booking-form-in-calendar-modify" id="bookingForm-modify">
+            <h2>Floor ${floor} Room ${room} Bed ${bed + 1} </h2>
+            <div class="form-group-modify">
+                <label for="firstName-modify">first name</label>
+                <input type="text" id="firstName-in-calendar-modify" name="firstName" required>
+            </div>
+            <div class="form-group-modify">
+                <label for="lastName-modify">last name</label>
+                <input type="text" id="lastName-in-calendar-modify" name="lastName" required>
+            </div>
+            <div class="form-group-modify">
+                <label for="startDate-modify">start date</label>
+                <input type="date" id="startDate-in-calendar-modify" name="startDate" required>
+            </div>
+            <div class="form-group-modify">
+                <label for="duration-modify">duration of reservation</label>
+                <input type="number" id="duration-in-calendar-modify" name="duration" required>
+            </div>
+            <div class="form-group-modify">
+                <label for="birthdate-modify">date of birth</label>
+                <input type="date" id="birthdate-in-calendar-modify" name="birthdate" required>
+            </div>
+            
+            <div class="form-group-modify">
+                <label for="country">country</label>
+                <input type="text" id="country-in-calendar-modify" name="country" required>
+            </div>
+            <div class="form-group-modify" style="display:none;">
+                <label for="arrivalTime">arrival time</label>
+                <input type="time" id="arrivalTime-in-calendar" name="arrivalTime" required>
+            </div>
+            <div class="form-group-modify" style="display:none;">
+                <label for="arrivalTime">arrival time</label>
+                <input type="time" id="arrivalTime-in-calendar" name="arrivalTime" required>
+            </div>
+            <div class="form-group-modify">
+                <label for="gender">sex</label>
+                <select id="gender-in-calendar-modify" name="gender" required>
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                </select>
+            </div>
+            <div class="form-group-modify">
+                <label for="email">id of resident</label>
+                <input type="text" id="email-in-calendar-modify" name="email" required>
+            </div>
+            <div class="form-buttons-modify" style="display:none;">
+                <button type="submit" onclick="saveReserveInCalendar()">save</button>
+                <button type="button" id="cancelButton" onclick="cancelReserveInCalendar()">cancel</button>
+            </div>
+        </form>
+    `;
+
+    page += `
+    <div class="container-in-reserve-in-calendar-modify">
+        <h1>Reservation status</h1>
+        
+        <label for="colorDropdown-modify">Choose your reservation status</label>
+        <select id="colorDropdown-modify">
+            <option value="">Choose your reservation status</option>
+            <option value="yellow">booked (yellow)</option>
+            <option value="blue">present (blue)</option>
+            <option value="orange">noshow (orange)</option>
+            <option value="red">broken (red)</option>
+            <option value="purple">f.s (purple)</option>
+        </select>
+        
+        <textarea id="noteArea-modify" placeholder="Guest interests"></textarea>
+        
+        <div class="buttons-in-reserve-in-calendar-modify">
+            <button id="saveBtn-modify" onclick="saveModify(
+                ${JSON.stringify(floor).replace(/"/g, '&quot;')} , 
+                ${JSON.stringify(room).replace(/"/g, '&quot;')} , 
+                ${JSON.stringify(bed).replace(/"/g, '&quot;')} , 
+                ${JSON.stringify(nbrResident).replace(/"/g, '&quot;')}
+            )">save</button>
+            <button id="deleteBtn-modify" onclick="deleteResidentInBed(
+                ${JSON.stringify(floor).replace(/"/g, '&quot;')} , 
+                ${JSON.stringify(room).replace(/"/g, '&quot;')} , 
+                ${JSON.stringify(bed).replace(/"/g, '&quot;')} , 
+                ${JSON.stringify(nbrResident).replace(/"/g, '&quot;')}
+            )">cancel</button>
+        </div>
+    `;
+
+    document.getElementById('page-of-resreve-in-calendar-modify').innerHTML = page;
+
+    document.getElementById('firstName-in-calendar-modify').value = resident.firstName;
+    document.getElementById('lastName-in-calendar-modify').value = resident.lastName;
+    document.getElementById('startDate-in-calendar-modify').value = resident.startDate;
+    document.getElementById('duration-in-calendar-modify').value = resident.durationOfReservation;
+    document.getElementById('birthdate-in-calendar-modify').value = resident.birthDate;
+    //var arrivalTime = document.getElementById('arrivalTime-in-calendar-modify').value;
+   // var bankCardNumber = document.getElementById('cardNumber-in-calendar-modify').value;
+    document.getElementById('email-in-calendar-modify').value = resident.email;
+    document.getElementById('country-in-calendar-modify').value = resident.country;
+    document.getElementById('gender-in-calendar-modify').value = resident.gender;
+    document.getElementById('noteArea-modify').value = resident.note;
+
+
+    document.getElementById('colorDropdown-modify').addEventListener('change', function() {
+        const color = this.value;
+        if (color) {
+            choosenColor = color;
+        }
+    });
+
+
+    document.getElementById(currentIdInDisplayInformation).style.display = 'none';
+    document.getElementById(currentIdInModifysettings).style.display = 'none';
+    document.getElementById(currentPage).style.display = 'none';
+    currentPage = 'page-of-resreve-in-calendar-modify';
+    document.getElementById(currentPage).style.display = 'block';
+    
+}
+
+function saveModify(floor , room , bed , nbrResident) {
+
+    var firstName = document.getElementById('firstName-in-calendar-modify').value;
+    var lastName = document.getElementById('lastName-in-calendar-modify').value;
+    var startDate = document.getElementById('startDate-in-calendar-modify').value;
+    var duration = document.getElementById('duration-in-calendar-modify').value;
+    var birthDate = document.getElementById('birthdate-in-calendar-modify').value;
+    //var arrivalTime = document.getElementById('arrivalTime-in-calendar-modify').value;
+   // var bankCardNumber = document.getElementById('cardNumber-in-calendar-modify').value;
+    var email = document.getElementById('email-in-calendar-modify').value;
+    var country = document.getElementById('country-in-calendar-modify').value;
+    var gender = document.getElementById('gender-in-calendar-modify').value;
+    var note = document.getElementById('noteArea-modify').value;
+
+ for (let i = 0; i < hotel.listOfRooms.length; i++) {
+        if (hotel.listOfRooms[i].floorNumber === floor && hotel.listOfRooms[i].roomNumber === room) {
+           hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].firstName = firstName;
+           hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].lastName = lastName;
+           hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].durationOfReservation = duration;
+           hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].birthDate = birthDate;
+           hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].email = email;
+           hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].country = country;
+           hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].gender = gender;
+           hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].color = choosenColor;
+           hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].note = note;
+           break;
+        }
+    }
+
+  generateCalendar();
+  getCalendarPage();
 }
 
 function getSettingReservedInCalendar() {
@@ -1458,6 +1634,7 @@ function saveReserveInCalendar() {
     var email = document.getElementById('email-in-calendar').value;
     var country = document.getElementById('country-in-calendar').value;
     var gender = document.getElementById('gender-in-calendar').value;
+    var note = document.getElementById('noteArea').value;
 
     for (let i = 0; i < hotel.listOfRooms.length; i++) {
         if (hotel.listOfRooms[i].floorNumber === x && hotel.listOfRooms[i].roomNumber === y) {
@@ -1485,22 +1662,24 @@ function saveReserveInCalendar() {
                 gender,
                 duration,
                 bankCardNumber,
-                123
+                123 , 
+                choosenColor , 
+                note
             );
 
             hotel.listOfRooms[i].listOfResidentsInBed[targetBed].push(newResident);
 
-            isReservedDate(hotel.listOfRooms[i].listOfResidentsInBed[targetBed][0]);
+          // isReservedDate(hotel.listOfRooms[i].listOfResidentsInBed[targetBed][0]);
 
-            for (let k = 0; k < hotel.listOfRooms[i].listOfResidentsInBed[targetBed].length - 1; k++) {
-                for (let j = k + 1; j < hotel.listOfRooms[i].listOfResidentsInBed[targetBed].length; j++) {
-                    if (hotel.listOfRooms[i].listOfResidentsInBed[targetBed][k].startDate > hotel.listOfRooms[i].listOfResidentsInBed[targetBed][j].startDate) {
-                        var temp = hotel.listOfRooms[i].listOfResidentsInBed[targetBed][k];
-                        hotel.listOfRooms[i].listOfResidentsInBed[targetBed][k] = hotel.listOfRooms[i].listOfResidentsInBed[targetBed][j];
-                        hotel.listOfRooms[i].listOfResidentsInBed[targetBed][j] = temp;
-                    }
-                }
-            }
+            // for (let k = 0; k < hotel.listOfRooms[i].listOfResidentsInBed[targetBed].length - 1; k++) {
+            //     for (let j = k + 1; j < hotel.listOfRooms[i].listOfResidentsInBed[targetBed].length; j++) {
+            //         if (hotel.listOfRooms[i].listOfResidentsInBed[targetBed][k].startDate > hotel.listOfRooms[i].listOfResidentsInBed[targetBed][j].startDate) {
+            //             var temp = hotel.listOfRooms[i].listOfResidentsInBed[targetBed][k];
+            //             hotel.listOfRooms[i].listOfResidentsInBed[targetBed][k] = hotel.listOfRooms[i].listOfResidentsInBed[targetBed][j];
+            //             hotel.listOfRooms[i].listOfResidentsInBed[targetBed][j] = temp;
+            //         }
+            //     }
+            // }
 
             break;
         }
@@ -1548,7 +1727,7 @@ function reserveInCalendar(floorNumber, roomNumber, numberOfBed, numberOfCase, r
                 <label for="birthdate">date of birth</label>
                 <input type="date" id="birthdate-in-calendar" name="birthdate" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display:none;">
                 <label for="cardNumber">bank card number</label>
                 <input type="text" id="cardNumber-in-calendar" name="cardNumber" required>
             </div>
@@ -1556,7 +1735,7 @@ function reserveInCalendar(floorNumber, roomNumber, numberOfBed, numberOfCase, r
                 <label for="country">country</label>
                 <input type="text" id="country-in-calendar" name="country" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display:none;">
                 <label for="arrivalTime">arrival time</label>
                 <input type="time" id="arrivalTime-in-calendar" name="arrivalTime" required>
             </div>
@@ -1572,17 +1751,60 @@ function reserveInCalendar(floorNumber, roomNumber, numberOfBed, numberOfCase, r
                 </select>
             </div>
             <div class="form-group">
-                <label for="email">email</label>
-                <input type="email" id="email-in-calendar" name="email" required>
+                <label for="email">id of resident</label>
+                <input type="text" id="email-in-calendar" name="email" required>
             </div>
-            <div class="form-buttons">
+            <div class="form-buttons" style="display:none;">
                 <button type="submit" onclick="saveReserveInCalendar()">save</button>
                 <button type="button" id="cancelButton" onclick="cancelReserveInCalendar()">cancel</button>
             </div>
         </form>
     `;
 
+    page += `
+    <div class="container-in-reserve-in-calendar">
+        <h1>Reservation status</h1>
+        
+        <label for="colorDropdown">Choose your reservation status</label>
+        <select id="colorDropdown">
+            <option value="">Choose your reservation status</option>
+            <option value="yellow">booked (yellow)</option>
+            <option value="blue">present (blue)</option>
+            <option value="orange">noshow (orange)</option>
+            <option value="red">broken (red)</option>
+            <option value="purple">f.s (purple)</option>
+        </select>
+        
+        <textarea id="noteArea" placeholder="Guest interests"></textarea>
+        
+        <div class="buttons-in-reserve-in-calendar">
+            <button id="saveBtn" onclick="saveReserveInCalendar()">save</button>
+            <button id="deleteBtn" onclick="cancelReserveInCalendar()">cancel</button>
+        </div>
+    `;
+
     document.getElementById('page-of-resreve-in-calendar').innerHTML = page;
+
+    document.getElementById('colorDropdown').addEventListener('change', function() {
+        const color = this.value;
+        if (color) {
+            choosenColor = color;
+        }
+    });
+
+    // document.getElementById('saveBtn').addEventListener('click', function() {
+    //     const note = document.getElementById('noteArea').value;
+    //     if (note) {
+    //         alert('تم حفظ الملاحظة: ' + note);
+    //     } else {
+    //         alert('الرجاء كتابة ملاحظة قبل الحفظ.');
+    //     }
+    // });
+
+    // document.getElementById('deleteBtn').addEventListener('click', function() {
+    //     document.getElementById('noteArea').value = '';
+    //     alert('تم حذف الملاحظة.');
+    // });
 
     document.getElementById(currentIdInDisplayInformation).style.display = 'none';
     document.getElementById(currentIdInModifysettings).style.display = 'none';
@@ -2244,6 +2466,8 @@ function myAllocator() {
 }
 
 function getTypeOfRoom(room) {
+
+    return room.typeOfRoom;
 
     for (let f = 0; f < arrayOfRoomTypes.length; f++) {
         var ans = true;

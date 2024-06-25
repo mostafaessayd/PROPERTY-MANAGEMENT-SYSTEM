@@ -125,7 +125,7 @@
 .reserved-comp-in-calendar {
      height: 50px;
      width: 35px;
-     background-color: goldenrod;
+     /* background-color: goldenrod; */
 }
 
 .container-of-reserved-comp {
@@ -138,3 +138,108 @@
 #page-of-setting-resreve-in-calendar {
     
 }
+
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */
+.container-in-reserve-in-calendar {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.container-in-reserve-in-calendar h1 {
+    margin-bottom: 20px;
+}
+
+.container-in-reserve-in-calendar label, select, textarea, .buttons {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.container-in-reserve-in-calendar select, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.container-in-reserve-in-calendar textarea {
+    height: 100px;
+    resize: none;
+}
+
+.container-in-reserve-in-calendar button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#saveBtn {
+    background-color: #28a745;
+    color: #fff;
+    margin-right: 10px;
+}
+
+#deleteBtn {
+    background-color: #dc3545;
+    color: #fff;
+}
+/* ////////////////////////////////////////////////////////////////////////////////////////////////////// */
+
+
+
+/* /////////////////////////////////////////////////////////////////////////////////////////////////////// */
+.container-in-reserve-in-calendar-modify {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    text-align: center;
+}
+
+.container-in-reserve-in-calendar-modify h1 {
+    margin-bottom: 20px;
+}
+
+.container-in-reserve-in-calendar-modify label, select, textarea, .buttons {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.container-in-reserve-in-calendar-modify select, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.container-in-reserve-in-calendar-modify textarea {
+    height: 100px;
+    resize: none;
+}
+
+.container-in-reserve-in-calendar-modify button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#saveBtn-modify {
+    background-color: #28a745;
+    color: #fff;
+    margin-right: 10px;
+}
+
+#deleteBtn-modify {
+    background-color: #dc3545;
+    color: #fff;
+}
+/* /////////////////////////////////////////////////////////////////////////////////////////////////////// */

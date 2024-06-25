@@ -26,12 +26,50 @@ class Hotel {
 
     generateListOfRooms() {
         this.listOfRooms = [];
-        for (let i = 1; i <= 10; i++) {
-            for (let j = 1; j <= 30; j++) {
-                var room = new Room(i, j);
-                this.listOfRooms.push(room);
-            }
-        }
+        // for (let i = 1; i <= 10; i++) {
+        //     for (let j = 1; j <= 30; j++) {
+        //         var room = new Room(i, j);
+        //         this.listOfRooms.push(room);
+        //     }
+        // }
+        
+        let k = 1;
+
+            var room = new Room(1 , k , 8 , "001");
+            this.listOfRooms.push(room);
+            k++;
+        
+            var room = new Room(1 , k , 8 , "101");
+            this.listOfRooms.push(room);
+            k++;
+        
+            var room = new Room(1 , k , 8 , "102");
+            this.listOfRooms.push(room);
+            k++;
+        
+            var room = new Room(1 , k , 4 , "103");
+            this.listOfRooms.push(room);
+            k++;
+        
+            var room = new Room(1 , k , 8 , "201");
+            this.listOfRooms.push(room);
+            k++;
+       
+            var room = new Room(1 , k , 6 , "202");
+            this.listOfRooms.push(room);
+            k++;
+      
+            var room = new Room(1 , k , 6 , "203");
+            this.listOfRooms.push(room);
+            k++;
+    
+            var room = new Room(1 , k , 4 , "301");
+            this.listOfRooms.push(room);
+            k++;
+           
+            var room = new Room(1 , k , 6 , "302");
+            this.listOfRooms.push(room);
+
     }
 
     generateArchive() {
@@ -112,9 +150,11 @@ class rsdnt {
     totalPayment
     remaningPayment
     payedPayment
+    color;
+    note;
 
     constructor(firstName, lastName, country, email, arrivalTime, startDate, BirthDate, gender,
-        durationOfReservation, creditCardNumber, totalPayment) {
+        durationOfReservation, creditCardNumber, totalPayment , color , note) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.country = country;
@@ -125,7 +165,8 @@ class rsdnt {
         this.gender = gender;
         this.durationOfReservation = durationOfReservation;
         this.creditCardNumber = creditCardNumber;
-
+        this.color = color;
+        this.note = note;
         this.totalPayment = totalPayment; // Private variable for totalPayment
         this.remaningPayment = totalPayment; // Initialize remainingPayment with totalPayment
         this.payedPayment = 0; // Initialize payedPayment as 0
@@ -292,10 +333,11 @@ class Room {
     chairs;
     wayOfReservation;
     typeOfRoom;
+    
+    constructor(floorNumber, roomNumber , nbrBed , name) {
 
-    constructor(floorNumber, roomNumber) {
-
-        this.numberOfBeds = 2 + Math.floor(Math.random() * 7);
+        //this.numberOfBeds = 2 + Math.floor(Math.random() * 7);
+        this.numberOfBeds = nbrBed;
         // this.NumberOfFemaleBeds = Math.floor(Math.random * this.numberOfBeds + 1);
         // this.NumberOfMaleBeds = this.numberOfBeds - this.NumberOfFemaleBeds;
 
@@ -328,7 +370,7 @@ class Room {
         this.bookingLink = getRandomBookingLink();
         this.residentEmail = '';
         this.wayOfReservation = getwayOfResarvation(this);
-        this.typeOfRoom = 'normal';
+        this.typeOfRoom = name;
         this.countryOfResident = getRandomCountry();
         this.genderOfResident = getRandomGender();
         this.totalPayment = 100 + Math.floor(Math.random() * 900);
@@ -353,6 +395,8 @@ class Room {
                 3 ,
                 1111 ,
                 111 ,
+                "blue" ,
+                ""
              );
              
              this.listOfResidentsInBed[i].push(abc);

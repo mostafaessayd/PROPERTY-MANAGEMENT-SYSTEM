@@ -62,3 +62,73 @@
     background-color: #dc3545;
     color: #fff;
 }
+
+
+
+
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */
+#page-of-resreve-in-calendar-modify {
+    width: 950px;
+    height: 570px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 10px;
+    scrollbar-width: none;
+    overflow: scroll;
+}
+
+.booking-form-in-calendar-modify {
+    margin-right: 500px;
+    width: 23%;
+    /* padding: 20px; */
+    /* background-color: #28a745; */
+}
+
+.booking-form-in-calendar-modify h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group-modify {
+    margin-bottom: 15px;
+}
+
+.form-group-modify label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+.form-group-modify input ,
+.form-group-modify select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-buttons-modify {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-buttons-modify button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.form-buttons-modify button[type="submit"] {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.form-buttons-modify button[type="button"] {
+    background-color: #dc3545;
+    color: #fff;
+}
+/* //////////////////////////////////////////////////////////////////////////////////////////////////////// */
