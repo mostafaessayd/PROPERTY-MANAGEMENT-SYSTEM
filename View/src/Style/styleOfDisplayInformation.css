@@ -22,8 +22,8 @@
 }
 
 h2 {
-    font-size: 20px;
-    color: red;
+    /* font-size: 20px;
+    color: red; */
 }
 
 #button-of-card {
@@ -260,20 +260,20 @@ background-repeat: no-repeat;
 }
 
 input[type=text], input[type=email], input[type=number], input[type=date] {
-    margin-bottom: 20px;
+    /* margin-bottom: 20px;
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
-    width: 200px;
+    width: 200px; */
 }
 
 input[type=submit] {
-    padding: 10px 20px;
+    /* padding: 10px 20px;
     background-color: blue;
     color: white;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: pointer; */
 }
 
 /***********************************/

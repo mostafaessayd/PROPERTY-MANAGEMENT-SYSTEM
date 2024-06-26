@@ -1,0 +1,39 @@
+#container-of-reserve-page-in-calendar {
+   
+}
+
+.container-of-page-of-reserve-in-calendar {
+    width: 950px;
+    height: 570px;
+    display: flex;
+    border-radius: 20px;
+}
+
+.section-in-reserve-in-calendar {
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.section-in-reserve-in-calendar input, .section-in-reserve-in-calendar select, .section-in-reserve-in-calendar button, .section-in-reserve-in-calendar textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.section-in-reserve-in-calendar textarea {
+    height: 115px;
+}
+
+.section-in-reserve-in-calendar button {
+    background-color: rgb(32 , 162 , 160);
+    color: rgb(251 , 225 , 117);
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.section-in-reserve-in-calendar button.cancel {
+    background-color: #bc5e57;
+}

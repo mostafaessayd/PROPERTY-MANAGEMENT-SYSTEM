@@ -1624,17 +1624,18 @@ function isReservedDate(listOfResidents, nbrCase) {
 
 function saveReserveInCalendar() {
 
-    var firstName = document.getElementById('firstName-in-calendar').value;
-    var lastName = document.getElementById('lastName-in-calendar').value;
-    var startDate = document.getElementById('startDate-in-calendar').value;
-    var duration = document.getElementById('duration-in-calendar').value;
-    var birthDate = document.getElementById('birthdate-in-calendar').value;
-    var arrivalTime = document.getElementById('arrivalTime-in-calendar').value;
-    var bankCardNumber = document.getElementById('cardNumber-in-calendar').value;
-    var email = document.getElementById('email-in-calendar').value;
-    var country = document.getElementById('country-in-calendar').value;
-    var gender = document.getElementById('gender-in-calendar').value;
-    var note = document.getElementById('noteArea').value;
+    var firstName = document.getElementById('firstname-in-page-reserve-in-calendar').value;
+    var lastName = document.getElementById('lastname-in-page-reserve-in-calendar').value;
+    var startDate = document.getElementById('startdate-in-page-reserve-in-calendar').value;
+    var duration = document.getElementById('duration-in-page-reserve-in-calendar').value;
+    var birthDate = document.getElementById('birthdate-in-page-reserve-in-calendar').value;
+    var arrivalTime = "document.getElementById('arrivalTime-in-calendar').value";
+   var bankCardNumber = "document.getElementById('cardNumber-in-calendar').value";
+    var email = document.getElementById('address-in-page-reserve-in-calendar').value;
+    var country = document.getElementById('country-in-page-reserve-in-calendar').value;
+    var gender = document.getElementById('gender-in-page-reserve-in-calendar').value;
+    var colorOfStatus = document.getElementById('color-in-page-reserve-in-calendar').value;
+    var note = document.getElementById('notes-in-page-reserve-in-calendar').value;
 
     for (let i = 0; i < hotel.listOfRooms.length; i++) {
         if (hotel.listOfRooms[i].floorNumber === x && hotel.listOfRooms[i].roomNumber === y) {
@@ -1663,7 +1664,7 @@ function saveReserveInCalendar() {
                 duration,
                 bankCardNumber,
                 123 , 
-                choosenColor , 
+                colorOfStatus , 
                 note
             );
 
@@ -1702,95 +1703,96 @@ function reserveInCalendar(floorNumber, roomNumber, numberOfBed, numberOfCase, r
     x = floorNumber;
     y = roomNumber;
 
+
     //  alert('f : ' + floorNumber + '\nR : ' + roomNumber + '\nB : ' + numberOfBed + 1);
 
-    var page = `
-        <form class="booking-form-in-calendar" id="bookingForm">
-            <h2>Floor ${floorNumber} Room ${roomNumber} Bed ${numberOfBed + 1} </h2>
-            <div class="form-group">
-                <label for="firstName">first name</label>
-                <input type="text" id="firstName-in-calendar" name="firstName" required>
-            </div>
-            <div class="form-group">
-                <label for="lastName">last name</label>
-                <input type="text" id="lastName-in-calendar" name="lastName" required>
-            </div>
-            <div class="form-group">
-                <label for="startDate">start date</label>
-                <input type="date" id="startDate-in-calendar" name="startDate" required>
-            </div>
-            <div class="form-group">
-                <label for="duration">duration of reservation</label>
-                <input type="number" id="duration-in-calendar" name="duration" required>
-            </div>
-            <div class="form-group">
-                <label for="birthdate">date of birth</label>
-                <input type="date" id="birthdate-in-calendar" name="birthdate" required>
-            </div>
-            <div class="form-group" style="display:none;">
-                <label for="cardNumber">bank card number</label>
-                <input type="text" id="cardNumber-in-calendar" name="cardNumber" required>
-            </div>
-            <div class="form-group">
-                <label for="country">country</label>
-                <input type="text" id="country-in-calendar" name="country" required>
-            </div>
-            <div class="form-group" style="display:none;">
-                <label for="arrivalTime">arrival time</label>
-                <input type="time" id="arrivalTime-in-calendar" name="arrivalTime" required>
-            </div>
-            <div class="form-group" style="display:none;">
-                <label for="arrivalTime">arrival time</label>
-                <input type="time" id="arrivalTime-in-calendar" name="arrivalTime" required>
-            </div>
-            <div class="form-group">
-                <label for="gender">sex</label>
-                <select id="gender-in-calendar" name="gender" required>
-                    <option value="male">male</option>
-                    <option value="female">female</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="email">id of resident</label>
-                <input type="text" id="email-in-calendar" name="email" required>
-            </div>
-            <div class="form-buttons" style="display:none;">
-                <button type="submit" onclick="saveReserveInCalendar()">save</button>
-                <button type="button" id="cancelButton" onclick="cancelReserveInCalendar()">cancel</button>
-            </div>
-        </form>
-    `;
+    // var page = `
+    //     <form class="booking-form-in-calendar" id="bookingForm">
+    //         <h2>Floor ${floorNumber} Room ${roomNumber} Bed ${numberOfBed + 1} </h2>
+    //         <div class="form-group">
+    //             <label for="firstName">first name</label>
+    //             <input type="text" id="firstName-in-calendar" name="firstName" required>
+    //         </div>
+    //         <div class="form-group">
+    //             <label for="lastName">last name</label>
+    //             <input type="text" id="lastName-in-calendar" name="lastName" required>
+    //         </div>
+    //         <div class="form-group">
+    //             <label for="startDate">start date</label>
+    //             <input type="date" id="startDate-in-calendar" name="startDate" required>
+    //         </div>
+    //         <div class="form-group">
+    //             <label for="duration">duration of reservation</label>
+    //             <input type="number" id="duration-in-calendar" name="duration" required>
+    //         </div>
+    //         <div class="form-group">
+    //             <label for="birthdate">date of birth</label>
+    //             <input type="date" id="birthdate-in-calendar" name="birthdate" required>
+    //         </div>
+    //         <div class="form-group" style="display:none;">
+    //             <label for="cardNumber">bank card number</label>
+    //             <input type="text" id="cardNumber-in-calendar" name="cardNumber" required>
+    //         </div>
+    //         <div class="form-group">
+    //             <label for="country">country</label>
+    //             <input type="text" id="country-in-calendar" name="country" required>
+    //         </div>
+    //         <div class="form-group" style="display:none;">
+    //             <label for="arrivalTime">arrival time</label>
+    //             <input type="time" id="arrivalTime-in-calendar" name="arrivalTime" required>
+    //         </div>
+    //         <div class="form-group" style="display:none;">
+    //             <label for="arrivalTime">arrival time</label>
+    //             <input type="time" id="arrivalTime-in-calendar" name="arrivalTime" required>
+    //         </div>
+    //         <div class="form-group">
+    //             <label for="gender">sex</label>
+    //             <select id="gender-in-calendar" name="gender" required>
+    //                 <option value="male">male</option>
+    //                 <option value="female">female</option>
+    //             </select>
+    //         </div>
+    //         <div class="form-group">
+    //             <label for="email">id of resident</label>
+    //             <input type="text" id="email-in-calendar" name="email" required>
+    //         </div>
+    //         <div class="form-buttons" style="display:none;">
+    //             <button type="submit" onclick="saveReserveInCalendar()">save</button>
+    //             <button type="button" id="cancelButton" onclick="cancelReserveInCalendar()">cancel</button>
+    //         </div>
+    //     </form>
+    // `;
 
-    page += `
-    <div class="container-in-reserve-in-calendar">
-        <h1>Reservation status</h1>
+    // page += `
+    // <div class="container-in-reserve-in-calendar">
+    //     <h1>Reservation status</h1>
         
-        <label for="colorDropdown">Choose your reservation status</label>
-        <select id="colorDropdown">
-            <option value="">Choose your reservation status</option>
-            <option value="yellow">booked (yellow)</option>
-            <option value="blue">present (blue)</option>
-            <option value="orange">noshow (orange)</option>
-            <option value="red">broken (red)</option>
-            <option value="purple">f.s (purple)</option>
-        </select>
+    //     <label for="colorDropdown">Choose your reservation status</label>
+    //     <select id="colorDropdown">
+    //         <option value="">Choose your reservation status</option>
+    //         <option value="yellow">booked (yellow)</option>
+    //         <option value="blue">present (blue)</option>
+    //         <option value="orange">noshow (orange)</option>
+    //         <option value="red">broken (red)</option>
+    //         <option value="purple">f.s (purple)</option>
+    //     </select>
         
-        <textarea id="noteArea" placeholder="Guest interests"></textarea>
+    //     <textarea id="noteArea" placeholder="Guest interests"></textarea>
         
-        <div class="buttons-in-reserve-in-calendar">
-            <button id="saveBtn" onclick="saveReserveInCalendar()">save</button>
-            <button id="deleteBtn" onclick="cancelReserveInCalendar()">cancel</button>
-        </div>
-    `;
+    //     <div class="buttons-in-reserve-in-calendar">
+    //         <button id="saveBtn" onclick="saveReserveInCalendar()">save</button>
+    //         <button id="deleteBtn" onclick="cancelReserveInCalendar()">cancel</button>
+    //     </div>
+    // `;
 
-    document.getElementById('page-of-resreve-in-calendar').innerHTML = page;
+    document.getElementById('page-of-resreve-in-calendar').innerHTML = createPageOfReserveGuest();
 
-    document.getElementById('colorDropdown').addEventListener('change', function() {
-        const color = this.value;
-        if (color) {
-            choosenColor = color;
-        }
-    });
+    // document.getElementById('colorDropdown').addEventListener('change', function() {
+    //     const color = this.value;
+    //     if (color) {
+    //         choosenColor = color;
+    //     }
+    // });
 
     // document.getElementById('saveBtn').addEventListener('click', function() {
     //     const note = document.getElementById('noteArea').value;
@@ -1812,7 +1814,7 @@ function reserveInCalendar(floorNumber, roomNumber, numberOfBed, numberOfCase, r
     currentPage = 'page-of-resreve-in-calendar';
     document.getElementById(currentPage).style.display = 'block';
 
-    const dateInput = document.getElementById('startDate-in-calendar');
+    const dateInput = document.getElementById('startdate-in-page-reserve-in-calendar');
 
     // Get the current date
     const today = new Date();

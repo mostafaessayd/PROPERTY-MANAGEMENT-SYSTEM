@@ -277,11 +277,11 @@ body {
 }
 
 input[type="number"] {
-    padding: 8px;
+    /* padding: 8px;
     font-size: 16px;
     border: 2px solid #ccc;
     border-radius: 4px;
-    width: 90%;
+    width: 90%; */
     /* Limit width to not exceed its section */
 }
 
