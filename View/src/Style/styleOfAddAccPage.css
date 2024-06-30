@@ -45,7 +45,7 @@
     border-radius: 5px; /* Optional: add rounded corners */
     font-size: 1em; /* Optional: increase font size */
 }
-.buttons-of-pass {
+.s-of-pass {
     display: flex;
     gap: 20px;
 }

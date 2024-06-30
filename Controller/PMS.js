@@ -22,6 +22,7 @@ var roomtypes = [
  '4 bed mixed room'
 ];
 
+
 /////////
 var currentUser = 'admin';
 var names = [];
@@ -70,9 +71,11 @@ window.onload = function () {
     generatePageOfAccount();
     generateFirstPage();
     generatePageOfOthersPrice();
-    generateCalendar();
+   // generateCalendar();
+  // getSecondPageOfCalendar();
     initilaizeNames();
-    generatePageOfPayment();
+    //generatePageOfPayment();
+    createRoomDisplayGridInCalendar(hotel.listOfRooms);
     rempleID();
     goToPMS();
 }

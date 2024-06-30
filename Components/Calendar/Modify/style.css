@@ -1,0 +1,50 @@
+#container-of-modify-reserve-page-in-calendar {
+   
+}
+
+.container-of-page-of-modify-reserve-in-calendar {
+    width: 950px;
+    height: 570px;
+    display: flex;
+    border-radius: 20px;
+}
+
+.section-in-modify-reserve-in-calendar {
+    width: 50%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.section-in-modify-reserve-in-calendar input, .section-in-modify-reserve-in-calendar select, .section-in-modify-reserve-in-calendar button, .section-in-modify-reserve-in-calendar textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.section-in-modify-reserve-in-calendar textarea {
+    height: 160px;
+}
+
+.section-in-modify-reserve-in-calendar button {
+    background-color: rgb(32 , 162 , 160);
+    color: rgb(251 , 225 , 117);
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.section-in-modify-reserve-in-calendar button.cancel {
+    background-color: #bc5e57;
+    width: 40%;
+    margin-left: 30px;
+}
+
+.container-of-two-buttons-in-modify-calendar {
+    display: flex;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 20px;
+}

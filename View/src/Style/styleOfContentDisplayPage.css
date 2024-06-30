@@ -268,11 +268,9 @@ body {
 .card>input,
 .card>button {
     flex: 1;
-    /* Each child takes equal space */
     display: flex;
     align-items: center;
     justify-content: center;
-    /* Center the items horizontally */
 
 }
 
@@ -299,7 +297,7 @@ input[type="number"] {
 }
 
 button:hover {
-    background-color: #0056b3;
+    /* background-color: #0056b3; */
 }
 
 .label {

@@ -1057,7 +1057,6 @@ function displaySelectedGender() {
 function displaySelectedSort() {
     var sort = document.getElementById('sortDropdown').value;
     typeOfSort = (sort ? sort : -1);
-    alert(typeOfSort);
 }
 
 //get date in input
@@ -1159,31 +1158,31 @@ function sortListByDurationOfReservation(list, typeSort) {
 }
 
 //////////////////////////////////////////////
-function addDaysToDate(initialDate, days) {
-    const result = new Date(initialDate);
-    result.setDate(result.getDate() + days);
-    return result;
-}
+// function addDaysToDate(initialDate, days) {
+//     const result = new Date(initialDate);
+//     result.setDate(result.getDate() + days);
+//     return result;
+// }
 
-var weekDay;
-var Day;
-var currentMonth;
+// var weekDay;
+// var Day;
+// var currentMonth;
 
-function formatDate(date) {
-    const options0 = { month: 'short' };
-    const options = { day: 'numeric' };
-    const options2 = { weekday: 'short' };
+// function formatDate(date) {
+//     const options0 = { month: 'short' };
+//     const options = { day: 'numeric' };
+//     const options2 = { weekday: 'short' };
 
-    const formattedDate = date.toLocaleDateString('en-US', options);
+//     const formattedDate = date.toLocaleDateString('en-US', options);
 
-    Day = date.toLocaleDateString('en-US', options);
-    weekDay = date.toLocaleDateString('en-US', options2);
-    //  currentMonth = date.toLocaleDateString('en-US', options0);
+//     Day = date.toLocaleDateString('en-US', options);
+//     weekDay = date.toLocaleDateString('en-US', options2);
+//     //  currentMonth = date.toLocaleDateString('en-US', options0);
 
-    // Day = options.day;
+//     // Day = options.day;
 
-    return formattedDate.replace(/,/g, ''); // تزيل الفواصل
-}
+//     return formattedDate.replace(/,/g, ''); // تزيل الفواصل
+// }
 
 var currentDuration;
 var idOfResident = [];
@@ -1194,221 +1193,221 @@ var selectType = "All";
 
 //generate calendar
 function generateCalendar() {
-    var startDate = new Date();
+    // var startDate = new Date();
 
-    const monthNames = [
-        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-    ];
+    // const monthNames = [
+    //     "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    //     "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    // ];
 
-    currentMonth = monthNames[startDate.getMonth()];
+    // currentMonth = monthNames[startDate.getMonth()];
 
-    var page = ``;
-    for (let i = 0; i < 20; i++) {
-        var currentDate = addDaysToDate(startDate, i);
-        formatDate(currentDate);
-        // page += `<div class="box-of-day">${formatDate(currentDate)}</div>`;
-        page += `
-        <div class="box-of-day">
-           <div class="box-of-day-day-part">
-             ${Day}
-           </div>
-           <div class="box-of-day-weekday-part">
-            ${weekDay}
-           </div>
-        </div>`;
-    }
+    // var page = ``;
+    // for (let i = 0; i < 20; i++) {
+    //     var currentDate = addDaysToDate(startDate, i);
+    //     formatDate(currentDate);
+    //     // page += `<div class="box-of-day">${formatDate(currentDate)}</div>`;
+    //     page += `
+    //     <div class="box-of-day">
+    //        <div class="box-of-day-day-part">
+    //          ${Day}
+    //        </div>
+    //        <div class="box-of-day-weekday-part">
+    //         ${weekDay}
+    //        </div>
+    //     </div>`;
+    // }
 
-    var crMonth = `<div style="margin-top:8px;margin-left:8px;width:max-content;"><h2 style="color:black;">${currentMonth}</h2></div>`
-    document.getElementById('current-month-in-calendar').innerHTML = crMonth;
+    // var crMonth = `<div style="margin-top:8px;margin-left:8px;width:max-content;"><h2 style="color:black;">${currentMonth}</h2></div>`
+    // document.getElementById('current-month-in-calendar').innerHTML = crMonth;
 
 
-    document.getElementById('days-in-calendar').innerHTML = page;
+    // document.getElementById('days-in-calendar').innerHTML = page;
 
-    var selectOfTypeInCalendar = '<option value="0">All</option>';
-    for (let i = 0; i < arrayOfRoomTypes.length; i++) {
-        selectOfTypeInCalendar += `<option value="${i}">${arrayOfRoomTypes[i].type}</option>`
-    }
+    // var selectOfTypeInCalendar = '<option value="0">All</option>';
+    // for (let i = 0; i < arrayOfRoomTypes.length; i++) {
+    //     selectOfTypeInCalendar += `<option value="${i}">${arrayOfRoomTypes[i].type}</option>`
+    // }
 
-    const initilaizeDropdawn = (ID) => {
-        document.getElementById(ID).addEventListener('change', function () {
-            const selectedOption = this.options[this.selectedIndex].text;
-            selectType = selectedOption;
-            generateCalendar();
-        });
-    }
+    // const initilaizeDropdawn = (ID) => {
+    //     document.getElementById(ID).addEventListener('change', function () {
+    //         const selectedOption = this.options[this.selectedIndex].text;
+    //         selectType = selectedOption;
+    //         generateCalendar();
+    //     });
+    // }
 
-    document.getElementById('selection-type-of-room-in-calendar').innerHTML = `
-     <div class="dropdown-wrapper2" display: flex; style="margin-left:0px;">
-             <button class="text-of-select" style="width:39px;">types </button>
-                <select class="dropdown" style="width:49px;" id="select-of-type-room-in-calendar">
-                   ${selectOfTypeInCalendar}
-                </select>
-    </div>
-    `;
-    initilaizeDropdawn('select-of-type-room-in-calendar');
+    // document.getElementById('selection-type-of-room-in-calendar').innerHTML = `
+    //  <div class="dropdown-wrapper2" display: flex; style="margin-left:0px;">
+    //          <button class="text-of-select" style="width:39px;">types </button>
+    //             <select class="dropdown" style="width:49px;" id="select-of-type-room-in-calendar">
+    //                ${selectOfTypeInCalendar}
+    //             </select>
+    // </div>
+    // `;
+    // initilaizeDropdawn('select-of-type-room-in-calendar');
 
-    document.getElementById('selection-status-of-room-in-calendar').innerHTML = `
-    <div class="dropdown-wrapper2" display: flex; style="margin-left:-1px;">
-            <button class="text-of-select" >Status</button>
-                <select class="dropdown" >
-                    <option value="0">All</option>
-                    <option value="1">Reserved</option>
-                    <option value="2">Unbooked</option>
-                </select>
-            </div>
-    `;
+    // document.getElementById('selection-status-of-room-in-calendar').innerHTML = `
+    // <div class="dropdown-wrapper2" display: flex; style="margin-left:-1px;">
+    //         <button class="text-of-select" >Status</button>
+    //             <select class="dropdown" >
+    //                 <option value="0">All</option>
+    //                 <option value="1">Reserved</option>
+    //                 <option value="2">Unbooked</option>
+    //             </select>
+    //         </div>
+    // `;
 
-    page = '<table>';
-    for (let i = 0; i < hotel.listOfRooms.length; i++) {
-        // console.log(getTypeOfRoom(hotel.listOfRooms[i]));
-        var ans = true;
-        for (let f = 0; f < arrayOfRoomTypes.length; f++) {
-            if (arrayOfRoomTypes[f].type === selectType) {
-                if (hotel.listOfRooms[i].statusOfMixed !== arrayOfRoomTypes[f].isMixed) {
-                    ans = false;
-                } else {
-                    if (arrayOfRoomTypes[f].isMixed) {
-                        ans &= hotel.listOfRooms[i].numberOfBeds === arrayOfRoomTypes[f].numberOfAllBeds;
-                        ans &= arrayOfRoomTypes[f].maleBeds * arrayOfRoomTypes[f].femaleBeds !== 0;
-                    } else {
-                        ans &= arrayOfRoomTypes[f].femaleBeds === hotel.listOfRooms[i].NumberOfFemaleBeds;
-                        ans &= arrayOfRoomTypes[f].maleBeds === hotel.listOfRooms[i].NumberOfMaleBeds;
-                        ans &= arrayOfRoomTypes[f].numberOfAllBeds === hotel.listOfRooms[i].numberOfBeds;
-                        // ans &= room.NumberOfFemaleBeds + room.NumberOfMaleBeds === room.numberOfBeds;
-                    }
-                }
-                break;
-            }
-        }
+    // page = '<table>';
+    // for (let i = 0; i < hotel.listOfRooms.length; i++) {
+    //     // console.log(getTypeOfRoom(hotel.listOfRooms[i]));
+    //     var ans = true;
+    //     for (let f = 0; f < arrayOfRoomTypes.length; f++) {
+    //         if (arrayOfRoomTypes[f].type === selectType) {
+    //             if (hotel.listOfRooms[i].statusOfMixed !== arrayOfRoomTypes[f].isMixed) {
+    //                 ans = false;
+    //             } else {
+    //                 if (arrayOfRoomTypes[f].isMixed) {
+    //                     ans &= hotel.listOfRooms[i].numberOfBeds === arrayOfRoomTypes[f].numberOfAllBeds;
+    //                     ans &= arrayOfRoomTypes[f].maleBeds * arrayOfRoomTypes[f].femaleBeds !== 0;
+    //                 } else {
+    //                     ans &= arrayOfRoomTypes[f].femaleBeds === hotel.listOfRooms[i].NumberOfFemaleBeds;
+    //                     ans &= arrayOfRoomTypes[f].maleBeds === hotel.listOfRooms[i].NumberOfMaleBeds;
+    //                     ans &= arrayOfRoomTypes[f].numberOfAllBeds === hotel.listOfRooms[i].numberOfBeds;
+    //                     // ans &= room.NumberOfFemaleBeds + room.NumberOfMaleBeds === room.numberOfBeds;
+    //                 }
+    //             }
+    //             break;
+    //         }
+    //     }
       
-        if (ans !== 1 && selectType !== "All") {
-            continue;
-        }
+        // if (ans !== 1 && selectType !== "All") {
+        //     continue;
+        // }
 
         // console.log(selectType);
 
-        for (let k = 0; k < hotel.listOfRooms[i].numberOfBeds; k++) {
-            page += '<tr>';
-            page += `
-            <div class="range-in-calendar">
-            <div class="part-of-type-of-room-in-calendar">
-             <div class="id-of-room-in-calrndar">
-              <!--F${hotel.listOfRooms[i].floorNumber}
-              -R${hotel.listOfRooms[i].roomNumber}
-              -B${k + 1}${hotel.listOfRooms[i].positionOfBeds[k]}-->
-              </div>
-              <div class="type-of-room-in-calendar">
-               room 
-               ${getTypeOfRoom(hotel.listOfRooms[i])}-Bed${k + 1}
-              </div>
-             </div>`
+    //     for (let k = 0; k < hotel.listOfRooms[i].numberOfBeds; k++) {
+    //         page += '<tr>';
+    //         page += `
+    //         <div class="range-in-calendar">
+    //         <div class="part-of-type-of-room-in-calendar">
+    //          <div class="id-of-room-in-calrndar">
+    //           <!--F${hotel.listOfRooms[i].floorNumber}
+    //           -R${hotel.listOfRooms[i].roomNumber}
+    //           -B${k + 1}${hotel.listOfRooms[i].positionOfBeds[k]}-->
+    //           </div>
+    //           <div class="type-of-room-in-calendar">
+    //            room 
+    //            ${getTypeOfRoom(hotel.listOfRooms[i])}-Bed${k + 1}
+    //           </div>
+    //          </div>`
 
-            var background = (hotel.listOfRooms[i].statusOfBeds[k] ? 'green' : 'red');
+    //         var background = (hotel.listOfRooms[i].statusOfBeds[k] ? 'green' : 'red');
 
-            page += `<div class="part-of-days-in-calendar">`
-            for (let j = 0; j < 20;) {
+    //         page += `<div class="part-of-days-in-calendar">`
+    //         for (let j = 0; j < 20;) {
 
-                var dateOftoday = new Date();
+    //             var dateOftoday = new Date();
 
-                //  dateOftoday.setDate(dateOftoday.getDate() + j);
+    //             //  dateOftoday.setDate(dateOftoday.getDate() + j);
 
-                let answer = isReservedDate(hotel.listOfRooms[i].listOfResidentsInBed[k], j);
+    //             let answer = isReservedDate(hotel.listOfRooms[i].listOfResidentsInBed[k], j);
 
-                if (answer === "NO") {
-                    page += `
-                 <div class="comp-in-calendar" onclick="reserveInCalendar(
-                 ${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} , 
-                 ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
-                 ${JSON.stringify(k).replace(/"/g, '&quot;')} ,
-                 ${JSON.stringify(j).replace(/"/g, '&quot;')} ,
-                 ${JSON.stringify(hotel.listOfRooms[i]).replace(/"/g, '&quot;')}
-                 )">
+    //             if (answer === "NO") {
+    //                 page += `
+    //              <div class="comp-in-calendar" onclick="reserveInCalendar(
+    //              ${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} , 
+    //              ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
+    //              ${JSON.stringify(k).replace(/"/g, '&quot;')} ,
+    //              ${JSON.stringify(j).replace(/"/g, '&quot;')} ,
+    //              ${JSON.stringify(hotel.listOfRooms[i]).replace(/"/g, '&quot;')}
+    //              )">
                   
-                 </div>
-                      `;
-                    j++;
-                }
-                else {
-                    let d = 1;
-                    let currentID = lastIdOFResident.toString();
-                    let alf = 1;
-                    console.log(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color);
-                    // let crd = '<div id="' + currentID +'">';
-                    if (currentDuration > 1) {
-                        page += `
-                    <div class="reserved-comp-in-calendar" onclick="modifyReserveInCalendar(${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} ,
-                    ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
-                    ${JSON.stringify(k).replace(/"/g, '&quot;')} , 
-                    ${JSON.stringify(numberOfResident).replace(/"/g, '&quot;')} ,
-                    ${JSON.stringify(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident]).replace(/"/g, '&quot;')})" id="${currentID}" style="border-top-left-radius: 40px;background-color:${hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color};" onclick="modifyReserveInCalendar(${JSON.stringify(currentID).replace(/"/g, '&quot;')})">
+    //              </div>
+    //                   `;
+    //                 j++;
+    //             }
+    //             else {
+    //                 let d = 1;
+    //                 let currentID = lastIdOFResident.toString();
+    //                 let alf = 1;
+    //                // console.log(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color);
+    //                 // let crd = '<div id="' + currentID +'">';
+    //                 if (currentDuration > 1) {
+    //                     page += `
+    //                 <div class="reserved-comp-in-calendar" onclick="modifyReserveInCalendar(${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} ,
+    //                 ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
+    //                 ${JSON.stringify(k).replace(/"/g, '&quot;')} , 
+    //                 ${JSON.stringify(numberOfResident).replace(/"/g, '&quot;')} ,
+    //                 ${JSON.stringify(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident]).replace(/"/g, '&quot;')})" id="${currentID}" style="border-top-left-radius: 40px;background-color:${hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color};" onclick="modifyReserveInCalendar(${JSON.stringify(currentID).replace(/"/g, '&quot;')})">
                      
-                    </div>`;
-                    } else {
-                        page += `
-                        <div class="reserved-comp-in-calendar"  onclick="modifyReserveInCalendar(${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} ,
-                    ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
-                    ${JSON.stringify(k).replace(/"/g, '&quot;')} , 
-                    ${JSON.stringify(numberOfResident).replace(/"/g, '&quot;')} ,
-                    ${JSON.stringify(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident]).replace(/"/g, '&quot;')})" id="${currentID}" style="background-color:${hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color};border-top-left-radius: 40px;border-bottom-right-radius: 40px;">
-                         <h3>${answer}</h3>
-                        </div>`;
-                    }
-                    j++;
-                    while (d < currentDuration - 1 && j < 19) {
-                        page += `
-                 <div class="reserved-comp-in-calendar" id="${currentID}"  onclick="modifyReserveInCalendar(${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} ,
-                    ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
-                    ${JSON.stringify(k).replace(/"/g, '&quot;')} , 
-                    ${JSON.stringify(numberOfResident).replace(/"/g, '&quot;')} ,
-                    ${JSON.stringify(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident]).replace(/"/g, '&quot;')})" style="background-color:${hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color};">
-                  <h3>${(alf++ === 1 ? answer : "")}</h3>
-                 </div>
-                      `;
-                        j++;
-                        d++;
-                    }
+    //                 </div>`;
+    //                 } else {
+    //                     page += `
+    //                     <div class="reserved-comp-in-calendar"  onclick="modifyReserveInCalendar(${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} ,
+    //                 ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
+    //                 ${JSON.stringify(k).replace(/"/g, '&quot;')} , 
+    //                 ${JSON.stringify(numberOfResident).replace(/"/g, '&quot;')} ,
+    //                 ${JSON.stringify(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident]).replace(/"/g, '&quot;')})" id="${currentID}" style="background-color:${hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color};border-top-left-radius: 40px;border-bottom-right-radius: 40px;">
+    //                      <h3>${answer}</h3>
+    //                     </div>`;
+    //                 }
+    //                 j++;
+    //                 while (d < currentDuration - 1 && j < 19) {
+    //                     page += `
+    //              <div class="reserved-comp-in-calendar" id="${currentID}"  onclick="modifyReserveInCalendar(${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} ,
+    //                 ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
+    //                 ${JSON.stringify(k).replace(/"/g, '&quot;')} , 
+    //                 ${JSON.stringify(numberOfResident).replace(/"/g, '&quot;')} ,
+    //                 ${JSON.stringify(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident]).replace(/"/g, '&quot;')})" style="background-color:${hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color};">
+    //               <h3>${(alf++ === 1 ? answer : "")}</h3>
+    //              </div>
+    //                   `;
+    //                     j++;
+    //                     d++;
+    //                 }
 
-                    if (currentDuration > 1) {
-                        page += `
-                    <div class="reserved-comp-in-calendar"  onclick="modifyReserveInCalendar(${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} ,
-                    ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
-                    ${JSON.stringify(k).replace(/"/g, '&quot;')} , 
-                    ${JSON.stringify(numberOfResident).replace(/"/g, '&quot;')} ,
-                    ${JSON.stringify(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident]).replace(/"/g, '&quot;')})" id="${currentID}" style="border-bottom-right-radius: 40px;background-color:${hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color};">
+    //                 if (currentDuration > 1) {
+    //                     page += `
+    //                 <div class="reserved-comp-in-calendar"  onclick="modifyReserveInCalendar(${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} ,
+    //                 ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
+    //                 ${JSON.stringify(k).replace(/"/g, '&quot;')} , 
+    //                 ${JSON.stringify(numberOfResident).replace(/"/g, '&quot;')} ,
+    //                 ${JSON.stringify(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident]).replace(/"/g, '&quot;')})" id="${currentID}" style="border-bottom-right-radius: 40px;background-color:${hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color};">
                      
-                    </div>`;
-                        j++;
-                    } else if (currentDuration === 2) {
-                        page += `
-                    <div class="reserved-comp-in-calendar"  onclick="modifyReserveInCalendar(${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} ,
-                    ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
-                    ${JSON.stringify(k).replace(/"/g, '&quot;')} , 
-                    ${JSON.stringify(numberOfResident).replace(/"/g, '&quot;')} ,
-                    ${JSON.stringify(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident]).replace(/"/g, '&quot;')})" id="${currentID}" style="background-color:${hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color};border-bottom-right-radius: 40px;">
-                     <h3>${answer}</h3>
-                    </div>`;
-                        j++;
-                    }
+    //                 </div>`;
+    //                     j++;
+    //                 } else if (currentDuration === 2) {
+    //                     page += `
+    //                 <div class="reserved-comp-in-calendar"  onclick="modifyReserveInCalendar(${JSON.stringify(hotel.listOfRooms[i].floorNumber).replace(/"/g, '&quot;')} ,
+    //                 ${JSON.stringify(hotel.listOfRooms[i].roomNumber).replace(/"/g, '&quot;')} ,
+    //                 ${JSON.stringify(k).replace(/"/g, '&quot;')} , 
+    //                 ${JSON.stringify(numberOfResident).replace(/"/g, '&quot;')} ,
+    //                 ${JSON.stringify(hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident]).replace(/"/g, '&quot;')})" id="${currentID}" style="background-color:${hotel.listOfRooms[i].listOfResidentsInBed[k][numberOfResident].color};border-bottom-right-radius: 40px;">
+    //                  <h3>${answer}</h3>
+    //                 </div>`;
+    //                     j++;
+    //                 }
 
-                    // crd += '</div>'
+    //                 // crd += '</div>'
 
-                    // page += crd;
-                    pixeles.push(currentDuration);
-                    namesOfResidents.push(answer);
-                    lastIdOFResident++;
-                }
-            }
+    //                 // page += crd;
+    //                 pixeles.push(currentDuration);
+    //                 namesOfResidents.push(answer);
+    //                 lastIdOFResident++;
+    //             }
+    //         }
 
-            page += `</div>`
-            page += `</div>`
-            page += '</tr>';
-        }
-    }
+    //         page += `</div>`
+    //         page += `</div>`
+    //         page += '</tr>';
+    //     }
+    // }
 
-    page += '</table>';
+    // page += '</table>';
 
-    document.getElementById('boocked-in-days').innerHTML = page;
+    // document.getElementById('boocked-in-days').innerHTML = page;
 
     // for(let i = 0 ; i < lastIdOFResident ; i++){
     // document.getElementById(i.toString()).style.backgroundColor = 'red';
@@ -1433,10 +1432,16 @@ function deleteResidentInBed(floor, room, Bed , numberOfResident) {
         }
     }
 
-    generateCalendar();
+  //  generateCalendar();
     getCalendarPage();
 }
 
+//////////////////////////////////////////////////////
+function getSecondPageOfCalendar() {
+ document.getElementById('seconde-page-of-calendar').innerHTML = createRoomDisplayGridInCalendar(hotel.listOfRooms);
+}
+
+/////////////////////////////////////////////////////
 function fr(date) {
     var day = date.getDate().toString().padStart(2, '0');
     var month = (date.getMonth() + 1).toString().padStart(2, '0');
@@ -1542,6 +1547,7 @@ function modifyReserveInCalendar(floor , room , bed , nbrResident , resident) {
     document.getElementById('firstName-in-calendar-modify').value = resident.firstName;
     document.getElementById('lastName-in-calendar-modify').value = resident.lastName;
     document.getElementById('startDate-in-calendar-modify').value = resident.startDate;
+    alert(resident.startDate);
     document.getElementById('duration-in-calendar-modify').value = resident.durationOfReservation;
     document.getElementById('birthdate-in-calendar-modify').value = resident.birthDate;
     //var arrivalTime = document.getElementById('arrivalTime-in-calendar-modify').value;
@@ -1570,17 +1576,38 @@ function modifyReserveInCalendar(floor , room , bed , nbrResident , resident) {
 
 function saveModify(floor , room , bed , nbrResident) {
 
-    var firstName = document.getElementById('firstName-in-calendar-modify').value;
-    var lastName = document.getElementById('lastName-in-calendar-modify').value;
-    var startDate = document.getElementById('startDate-in-calendar-modify').value;
-    var duration = document.getElementById('duration-in-calendar-modify').value;
-    var birthDate = document.getElementById('birthdate-in-calendar-modify').value;
+    /**
+     * document.getElementById('firstname-in-page-modify-reserve-in-calendar').value = resident.firstName;
+    document.getElementById('lastname-in-page-modify-reserve-in-calendar').value = resident.lastName;
+    document.getElementById('startdate-in-page-modify-reserve-in-calendar').value = resident.startDate;
+    document.getElementById('duration-in-page-modify-reserve-in-calendar').value = resident.durationOfReservation;
+    document.getElementById('birthdate-in-page-modify-reserve-in-calendar').value = resident.birthDate;
     //var arrivalTime = document.getElementById('arrivalTime-in-calendar-modify').value;
    // var bankCardNumber = document.getElementById('cardNumber-in-calendar-modify').value;
-    var email = document.getElementById('email-in-calendar-modify').value;
-    var country = document.getElementById('country-in-calendar-modify').value;
-    var gender = document.getElementById('gender-in-calendar-modify').value;
-    var note = document.getElementById('noteArea-modify').value;
+    document.getElementById('address-in-page-modify-reserve-in-calendar').value = resident.email;
+    document.getElementById('country-in-page-modify-reserve-in-calendar').value = resident.country;
+    document.getElementById('gender-in-page-modify-reserve-in-calendar').value = resident.gender;
+    document.getElementById('notes-in-page-modify-reserve-in-calendar').value = resident.note;
+
+
+    document.getElementById('color-in-page-modify-reserve-in-calendar').value = resi
+     */
+    var firstName = document.getElementById('firstname-in-page-modify-reserve-in-calendar').value;
+    var lastName = document.getElementById('lastname-in-page-modify-reserve-in-calendar').value;
+    var startDate = document.getElementById('startdate-in-page-modify-reserve-in-calendar').value;
+    var l = new Date(startDate);
+    startDate = formatDate1(l);
+    var duration = document.getElementById('duration-in-page-modify-reserve-in-calendar').value;
+    var birthDate = document.getElementById('birthdate-in-page-modify-reserve-in-calendar').value;
+    //var arrivalTime = document.getElementById('arrivalTime-in-calendar-modify').value;
+   // var bankCardNumber = document.getElementById('cardNumber-in-calendar-modify').value;
+    var email = document.getElementById('address-in-page-modify-reserve-in-calendar').value;
+    var country = document.getElementById('country-in-page-modify-reserve-in-calendar').value;
+    var gender = document.getElementById('gender-in-page-modify-reserve-in-calendar').value;
+    var note = document.getElementById('notes-in-page-modify-reserve-in-calendar').value;
+    var paidByCard = document.getElementById('amount-paid-by-card-in-page-modify-reserve-in-calendar').value;
+    var paidByCash = document.getElementById('amount-paid-in-cash-in-page-modify-reserve-in-calendar').value;
+    var color = document.getElementById('color-in-page-modify-reserve-in-calendar').value;
 
  for (let i = 0; i < hotel.listOfRooms.length; i++) {
         if (hotel.listOfRooms[i].floorNumber === floor && hotel.listOfRooms[i].roomNumber === room) {
@@ -1591,13 +1618,16 @@ function saveModify(floor , room , bed , nbrResident) {
            hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].email = email;
            hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].country = country;
            hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].gender = gender;
-           hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].color = choosenColor;
+           hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].color = color;
+           hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].paidByCard = paidByCard;
+           hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].paidByCash = paidByCash;
+           hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].startDate = startDate;
            hotel.listOfRooms[i].listOfResidentsInBed[bed][nbrResident].note = note;
            break;
         }
     }
 
-  generateCalendar();
+  //generateCalendar();
   getCalendarPage();
 }
 
@@ -1605,25 +1635,24 @@ function getSettingReservedInCalendar() {
 
 }
 
-function isReservedDate(listOfResidents, nbrCase) {
-    var curDate = new Date();
-    curDate.setDate(curDate.getDate() + nbrCase);
+// function isReservedDate(listOfResidents, nbrCase) {
+//     var curDate = new Date();
+//     curDate.setDate(curDate.getDate() + nbrCase);
 
-    for (let i = 0; i < listOfResidents.length; i++) {
+//     for (let i = 0; i < listOfResidents.length; i++) {
 
-        var thisDate = new Date(listOfResidents[i].startDate);
-        if (thisDate.getDay() === curDate.getDay() && thisDate.getMonth() === curDate.getMonth() && thisDate.getFullYear() === curDate.getFullYear()) {
-            currentDuration = listOfResidents[i].durationOfReservation;
-            numberOfResident = i;
-            return listOfResidents[i].firstName + ' ' + listOfResidents[i].lastName;
-        }
-    }
+//         var thisDate = new Date(listOfResidents[i].startDate);
+//         if (thisDate.getDay() === curDate.getDay() && thisDate.getMonth() === curDate.getMonth() && thisDate.getFullYear() === curDate.getFullYear()) {
+//             currentDuration = listOfResidents[i].durationOfReservation;
+//             numberOfResident = i;
+//             return listOfResidents[i].firstName + ' ' + listOfResidents[i].lastName;
+//         }
+//     }
 
-    return "NO";
-}
+//     return "NO";
+// }
 
 function saveReserveInCalendar() {
-
     var firstName = document.getElementById('firstname-in-page-reserve-in-calendar').value;
     var lastName = document.getElementById('lastname-in-page-reserve-in-calendar').value;
     var startDate = document.getElementById('startdate-in-page-reserve-in-calendar').value;
@@ -1636,6 +1665,8 @@ function saveReserveInCalendar() {
     var gender = document.getElementById('gender-in-page-reserve-in-calendar').value;
     var colorOfStatus = document.getElementById('color-in-page-reserve-in-calendar').value;
     var note = document.getElementById('notes-in-page-reserve-in-calendar').value;
+    var paidByCash = document.getElementById('amount-paid-in-cash-in-page-reserve-in-calendar').value;
+    var paidByCard = document.getElementById('amount-paid-by-card-in-page-reserve-in-calendar').value;
 
     for (let i = 0; i < hotel.listOfRooms.length; i++) {
         if (hotel.listOfRooms[i].floorNumber === x && hotel.listOfRooms[i].roomNumber === y) {
@@ -1651,44 +1682,33 @@ function saveReserveInCalendar() {
                 arrivalTime,
                 bankCardNumber,
                 duration);
-
+            var dt = new Date(startDate);
+            dt = formatDate1(dt);
             var newResident = new rsdnt(
                 firstName,
                 lastName,
                 country,
                 email,
-                arrivalTime,
-                startDate,
+                dt,
                 birthDate,
                 gender,
                 duration,
-                bankCardNumber,
                 123 , 
                 colorOfStatus , 
-                note
+                note , 
+                paidByCard , 
+                paidByCash
             );
 
             hotel.listOfRooms[i].listOfResidentsInBed[targetBed].push(newResident);
-
-          // isReservedDate(hotel.listOfRooms[i].listOfResidentsInBed[targetBed][0]);
-
-            // for (let k = 0; k < hotel.listOfRooms[i].listOfResidentsInBed[targetBed].length - 1; k++) {
-            //     for (let j = k + 1; j < hotel.listOfRooms[i].listOfResidentsInBed[targetBed].length; j++) {
-            //         if (hotel.listOfRooms[i].listOfResidentsInBed[targetBed][k].startDate > hotel.listOfRooms[i].listOfResidentsInBed[targetBed][j].startDate) {
-            //             var temp = hotel.listOfRooms[i].listOfResidentsInBed[targetBed][k];
-            //             hotel.listOfRooms[i].listOfResidentsInBed[targetBed][k] = hotel.listOfRooms[i].listOfResidentsInBed[targetBed][j];
-            //             hotel.listOfRooms[i].listOfResidentsInBed[targetBed][j] = temp;
-            //         }
-            //     }
-            // }
-
+        
             break;
         }
     }
 
     generateTableOfRooms(hotel.listOfRooms, valueOfReservedDropdawn, valueOfBedsNumberDropdawn, valueOfFloorNumberDropdawn, valueOfRoomNumberDropdawn);
 
-    generateCalendar();
+    // generateCalendar();
     getCalendarPage();
 }
 
@@ -1702,8 +1722,7 @@ function reserveInCalendar(floorNumber, roomNumber, numberOfBed, numberOfCase, r
     targetBed = numberOfBed;
     x = floorNumber;
     y = roomNumber;
-
-
+    
     //  alert('f : ' + floorNumber + '\nR : ' + roomNumber + '\nB : ' + numberOfBed + 1);
 
     // var page = `
@@ -1846,10 +1865,11 @@ var span = document.getElementsByClassName("close")[0];
 
 //get calendar page
 function getCalendarPage() {
+    createRoomDisplayGridInCalendar(hotel.listOfRooms);
     document.getElementById(currentIdInDisplayInformation).style.display = 'none';
     document.getElementById(currentIdInModifysettings).style.display = 'none';
     document.getElementById(currentPage).style.display = 'none';
-    currentPage = 'page-of-calendar';
+    currentPage = 'container-of-home-page-of-calendar';
     document.getElementById(currentPage).style.display = 'block';
 }
 

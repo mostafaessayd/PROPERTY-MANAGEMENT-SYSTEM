@@ -22,8 +22,8 @@
 }
 
 h2 {
-    /* font-size: 20px;
-    color: red; */
+    /* 
+     */
 }
 
 #button-of-card {
@@ -99,23 +99,23 @@ h2 {
 }
 
 .dropdown{
-    background-image: linear-gradient(45deg, transparent 50%, rgb(32, 162, 160) 50%),
+    /* background-image: linear-gradient(45deg, transparent 50%, rgb(32, 162, 160) 50%),
     linear-gradient(135deg, rgb(32, 162, 160) 50%, transparent 50%);
-background-position: right 10px center, right 15px center; /* Adjusted position of arrows */
-background-size: 5px 5px, 5px 5px; /* Size of the arrows */
-background-repeat: no-repeat;
+background-position: right 10px center, right 15px center; 
+background-size: 5px 5px, 5px 5px; 
+background-repeat: no-repeat; */
 
 }
 .dropdown::-ms-expand {
-    display: none; /* Hide the default arrow in IE/Edge */
+    /* display: none;  */
 }
 .dropdown:hover {
-    background-color: rgb(230, 245, 245); /* Lighter tint for hover */
+    /* background-color: rgb(230, 245, 245);  */
 }
 .dropdown {
     /* margin: 0 10px;  */
     /* padding: 8px 30px 8px 10px; */
-    border: 2px solid rgb(32, 162, 160);
+    /* border: 2px solid rgb(32, 162, 160);
     background-color: #fff; 
     color: rgb(32, 162, 160); 
     font-size: 16px; 
@@ -127,7 +127,7 @@ background-repeat: no-repeat;
     outline: none; 
     border-top-right-radius: 15px;
     border-bottom-right-radius: 15px;
-    position: relative;
+    position: relative; */
 }
 #dropdown4{
     /* border: black 1px solid; */

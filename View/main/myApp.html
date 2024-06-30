@@ -11,13 +11,18 @@
 
 
       <!-- constants -->
+       <script src="../../Data/data.js"></script>
        <script src="../../Constants/listOfCountries.js"></script>
        <script src="../../Constants/variables.js"></script>
       <!--  -->
 
       <!-- componants -->
      <link rel="stylesheet" href="../../Components/Calendar/Reserve/style.css">
+     <link rel="stylesheet" href="../../Components/Calendar/Home page/style.css">
+     <link rel="stylesheet" href="../../Components/Calendar/Modify/style.css">
      <script src="../../Components/Calendar/Reserve/controller.js"></script>
+     <script src="../../Components/Calendar/Home page/controller.js"></script>
+     <script src="../../Components/Calendar/Modify/controller.js"></script>
      <!--  -->
 
 
@@ -48,7 +53,7 @@
     <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
     <script src="../../Model/sendData.js"></script>
     <script src="../../Data/Resident.js"></script>
-    <script src="../../Data/data.js"></script>
+    <!-- <script src="../../Data/data.js"></script> -->
     <script src="../../Model/getData.js"></script>
 
     <script src="../../Controller/functions.js"></script>
@@ -296,6 +301,41 @@
 
 
 
+
+        <!--  -->
+        <div id="container-of-home-page-of-calendar" style="display: none;">
+            <div id="top-part-in-calendar">
+    
+            </div>
+            <div id="part-of-days-and-type-in-calendar">
+                <div id="part-of-selection-type-in-calendar">
+                  <div id="part-of-selection-type-of-room-in-calendar">
+    
+                  </div>
+                  <div id="part-of-current-month-in-calendar">
+                    
+                  </div>
+                </div>
+                <div id="part-of-current-days-in-calendar">
+                    <!-- filling by Js -->
+                </div>
+            </div>
+            <div id="room-display-grid-in-calendar">
+                <!-- filling by Js -->
+            </div>
+            <div id="bottom-part-in-calendar">
+    
+            </div>
+        </div>
+        <!--  -->
+
+
+
+
+        <!-- display infotmation -->
+         <div id="seconde-page-of-calendar">
+            <!-- filling by js -->
+         </div>
         <!-- display information -->
         <div id="page-of-calendar" style="display: none;">
            
@@ -331,6 +371,10 @@
         </div>
 
         <div id="page-of-resreve-in-calendar" style="display: none;">
+            <!-- created by Js -->
+        </div>
+
+        <div id="page-of-modify-guest-information-in-calendar" style="display: none;">
             <!-- created by Js -->
         </div>
         

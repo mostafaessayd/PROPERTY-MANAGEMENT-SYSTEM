@@ -135,36 +135,46 @@ class Hotel {
 
 }
 
+var arrayOfRoomTypes = [
+    {type : "All" , femaleBeds :-1 , maleBeds :-1 , isMixed : true , numberOfAllBeds : -1} ,
+    {type : "Private mixed room" , femaleBeds :1 , maleBeds :1 , isMixed : true , numberOfAllBeds : 2} ,
+    {type : "Private un mixed room" , femaleBeds :2 , maleBeds :0 , isMixed : false , numberOfAllBeds : 2} ,
+    {type : "8 bed mixed room" , femaleBeds :8 , maleBeds :8 , isMixed : true , numberOfAllBeds : 8} ,
+    {type : "6 bed female room" , femaleBeds : 6 , maleBeds : 0 , isMixed : false , numberOfAllBeds : 6} ,
+    {type : "6 bed mixed room" , femaleBeds : 6 , maleBeds : 6 , isMixed : true , numberOfAllBeds : 6} ,
+    {type : "4 bed mixed room" , femaleBeds : 4 , maleBeds : 4 , isMixed : true , numberOfAllBeds : 4} ,
+];
+
 class rsdnt {
 
     firstName
     lastName
     country
     email
-    arrivalTime
     startDate
     BirthDate
     gender
     durationOfReservation
-    creditCardNumber
     totalPayment
     remaningPayment
     payedPayment
     color;
     note;
+    paidByCard;
+    paidByCash;
 
-    constructor(firstName, lastName, country, email, arrivalTime, startDate, BirthDate, gender,
-        durationOfReservation, creditCardNumber, totalPayment , color , note) {
+    constructor(firstName, lastName, country, email, startDate, BirthDate, gender,
+        durationOfReservation, totalPayment , color , note , paidByCard , paidByCash) {
+        this.paidByCash = paidByCash;
+        this.paidByCard = paidByCard;
         this.firstName = firstName;
         this.lastName = lastName;
         this.country = country;
         this.email = email;
-        this.arrivalTime = arrivalTime;
         this.startDate = startDate;
         this.BirthDate = BirthDate;
         this.gender = gender;
         this.durationOfReservation = durationOfReservation;
-        this.creditCardNumber = creditCardNumber;
         this.color = color;
         this.note = note;
         this.totalPayment = totalPayment; // Private variable for totalPayment
@@ -286,6 +296,29 @@ class rsdnt {
     }
 }
 
+function formatDate1(date) {
+    // Extract day, month, and year from the date object
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // January is 0, so we add 1
+    const year = String(date.getFullYear()).slice(-2); // Get last two digits of the year
+  
+    // Return formatted date string in dd/mm/yy format
+    return `${day}/${month}/${year}`;
+  }
+  
+  function datesAreEqual(dateStr1, dateStr2) {
+    // Split the date strings into day, month, and year parts
+    const [day1, month1, year1] = dateStr1.split('/');
+    const [day2, month2, year2] = dateStr2.split('/');
+  
+    // Create Date objects from the parsed parts (months are 0-indexed in Date constructor)
+    const date1 = new Date(`20${year1}`, month1 - 1, day1); // Assuming '20' is prefix for year 2000+
+    const date2 = new Date(`20${year2}`, month2 - 1, day2);
+  
+    // Compare the Date objects
+    return date1.getTime() === date2.getTime(); // Compare milliseconds since Unix epoch
+  }
+
 
 class Room {
     statusOfBeds = [];
@@ -358,11 +391,11 @@ class Room {
         this.startDate = getRandomStartDate();
         this.endDate = getRandomEndDate();
 
-        if (isDate1GreaterThanDate2(this.startDate, this.endDate)) {
-            var temp = this.startDate;
-            this.startDate = this.endDate;
-            this.endDate = temp;
-        }
+        // if (isDate1GreaterThanDate2(this.startDate, this.endDate)) {
+        //     var temp = this.startDate;
+        //     this.startDate = this.endDate;
+        //     this.endDate = temp;
+        // }
 
         this.durationOfReservation = calculateDaysBetweenDates(this.startDate, this.endDate);
         this.countdown = getCountdown();
@@ -381,28 +414,30 @@ class Room {
         for (let i = 0; i < this.numberOfBeds; i++) {
             this.listOfResidentsInBed[i] = [];
             
-            var gt = getRandomStartDate();
+            var gt = new Date();
+            gt = formatDate1(gt);
+
             var brth = getRandomStartDate();
             var abc = new rsdnt(
                 getRandomResident('Reserved') ,
                 "esso" ,
                 "senegal" ,
                 "hjhdjh@email.com" ,
-                "00:00" ,
-                gt ,
+                 gt ,
                 brth ,
                 "male" ,
                 3 ,
-                1111 ,
                 111 ,
                 "blue" ,
-                ""
+                "" , 
+                10 , 
+                10
              );
              
-             this.listOfResidentsInBed[i].push(abc);
-             
-            this.statusOfBeds[i] = this.getRandomStatus();
+            // this.listOfResidentsInBed[i].push(abc);
+            
             this.positionOfBeds[i] = getPosition();
+            
             if (this.statusOfBeds[i] === true) {
                 this.startDateOfResidentInBeds[i] = getRandomStartDate();
                 var fn = getRandomResident('Reserved');
@@ -413,8 +448,8 @@ class Room {
                 var arv = "00 : 00 pm";
                 var dr = 5 + Math.floor(Math.random() * 90);
                 var startDate = new Date() + Math.floor(Math.random() * 20);
-                this.residentOfBeds[i] = new Resident(fn, ln, em, cont, arv, cr, dr, startDate);
-
+              //  this.residentOfBeds[i] = new Resident(fn, ln, em, cont, arv, cr, dr, startDate);
+                
                 this.durationOfReservationOfBeds[i] = 1 + Math.floor(Math.random() * 200);;
             }
         }
@@ -739,44 +774,44 @@ class Account {
 
 
 
-function generateMenuOfButtons() {
-    var menu = `
-    <div class="logo"></div>
-        <hr class="hr-of-menu">
-        <div class="menu-item" id="rooms" onclick="goToPageOfRooms()"><div class="icon-of-button"><i class="fa-solid fa-door-open"></i></div><div class="text-of-button">Rooms</div></div>
-        <div class="menu-item" id="clock" onclick="getPageOfClock()"><div class="icon-of-button"><i class="fa-solid fa-magnifying-glass"></i></i></div><div class="text-of-button">Search</div></div>
-        <div class="menu-item" id="settings" onclick="generatePageOfSettings()"><div class="icon-of-button"><i class="fa-solid fa-gear"></i></div><div class="text-of-button">Settings</div></div>
-        <div class="menu-item" id="calendar" onclick="getCalendarPage()"><div class="icon-of-button"><i class="fa-regular fa-calendar"></i></div><div class="text-of-button">Calendar</div></div> 
-        `;
+// function generateMenuOfButtons() {
+//     var menu = `
+//     <div class="logo"></div>
+//         <hr class="hr-of-menu">
+//         <div class="menu-item" id="rooms" onclick="goToPageOfRooms()"><div class="icon-of-button"><i class="fa-solid fa-door-open"></i></div><div class="text-of-button">Rooms</div></div>
+//         <div class="menu-item" id="clock" onclick="getPageOfClock()"><div class="icon-of-button"><i class="fa-solid fa-magnifying-glass"></i></i></div><div class="text-of-button">Search</div></div>
+//         <div class="menu-item" id="settings" onclick="generatePageOfSettings()"><div class="icon-of-button"><i class="fa-solid fa-gear"></i></div><div class="text-of-button">Settings</div></div>
+//         <div class="menu-item" id="calendar" onclick="getCalendarPage()"><div class="icon-of-button"><i class="fa-regular fa-calendar"></i></div><div class="text-of-button">Calendar</div></div> 
+//         `;
 
-    if (currentUser === 'admin') {
-        menu += `
-        <div class="menu-item" id="historique" onclick="getPageOfArchives()"><div class="icon-of-button"><i class="fa-solid fa-store"></i></div><div class="text-of-button">Archive</div></div>`;
-    }
+//     if (currentUser === 'admin') {
+//         menu += `
+//         <div class="menu-item" id="historique" onclick="getPageOfArchives()"><div class="icon-of-button"><i class="fa-solid fa-store"></i></div><div class="text-of-button">Archive</div></div>`;
+//     }
 
-    menu += `
-    <div class="menu-item" id="payment" onclick="getPageOfPayment()"><div class="icon-of-button"><i class="fa-regular fa-credit-card"></i></div><div class="text-of-button">Payment</div></div>
-    <hr class="hr-of-menu">
-    <div class="menu-item" id="log-out" onclick="logOut()"><div class="icon-of-button"><i class="fa-solid fa-right-from-bracket"></i></div><div class="text-of-button">Log out</div></div>
-    <div id="div-of-acc">
-        <div class="current-user" id="current-user"></div>
-    </div>
-    `;
+//     menu += `
+//     <div class="menu-item" id="payment" onclick="getPageOfPayment()"><div class="icon-of-button"><i class="fa-regular fa-credit-card"></i></div><div class="text-of-button">Payment</div></div>
+//     <hr class="hr-of-menu">
+//     <div class="menu-item" id="log-out" onclick="logOut()"><div class="icon-of-button"><i class="fa-solid fa-right-from-bracket"></i></div><div class="text-of-button">Log out</div></div>
+//     <div id="div-of-acc">
+//         <div class="current-user" id="current-user"></div>
+//     </div>
+//     `;
 
-    document.getElementById('menu-of-options').innerHTML = menu;
+//     document.getElementById('menu-of-options').innerHTML = menu;
 
-}
+// }
 
-document.addEventListener('DOMContentLoaded', function () {
-    // Attach a single event listener to the parent container
-    const menu = document.getElementById('menu-of-options');
-    menu.addEventListener('click', function (event) {
-        const target = event.target.closest('.menu-item');
-        if (target) {
-            makeActive(target);
-            handleMenuAction(target.id);  // Handle actions based on the item id
-        }
-    });
+// document.addEventListener('DOMContentLoaded', function () {
+//     // Attach a single event listener to the parent container
+//     const menu = document.getElementById('menu-of-options');
+//     menu.addEventListener('click', function (event) {
+//         const target = event.target.closest('.menu-item');
+//         if (target) {
+//             makeActive(target);
+//             handleMenuAction(target.id);  // Handle actions based on the item id
+//         }
+//     });
 
-    generateMenuOfButtons();  // Generate menu on load
-});
+//     generateMenuOfButtons();  // Generate menu on load
+// });

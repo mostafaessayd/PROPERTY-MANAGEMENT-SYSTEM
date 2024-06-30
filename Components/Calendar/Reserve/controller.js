@@ -1,4 +1,4 @@
-createPageOfReserveGuest();
+//createPageOfReserveGuest();
 
 //create a page that contains all the basic information for the guest
 function createPageOfReserveGuest() {
@@ -48,12 +48,11 @@ function createPageOfReserveGuest() {
     page += `</select>`;
 
 
-    page += `<h2>Reservation status</h2>
-        <label for="type-of-services-provided-in-calendar">type of service provided</label>
-        <select id="type-of-services-provided-in-calendar">
-            <option value="Vip">Vip</option>
-            <option value="Normal">Normal</option>
-        </select>
+    page += `<!--<h2>Reservation status</h2>-->
+        <label for="amount-paid-by-card-in-page-reserve-in-calendar">The amount paid by card</label>
+        <input type="number" id="amount-paid-by-card-in-page-reserve-in-calendar" min="1">
+        <label for="amount-paid-in-cash-in-page-reserve-in-calendar">The amount paid in cash</label>
+        <input type="number" id="amount-paid-in-cash-in-page-reserve-in-calendar" min="1">
         <label for="color-in-page-reserve-in-calendar">Choose reservation status</label>
         <select id="color-in-page-reserve-in-calendar">
             <option value="red">broken (red)</option>
@@ -61,12 +60,6 @@ function createPageOfReserveGuest() {
             <option value="orange">noshow (orange)</option>
             <option value="yellow">booked (yellow)</option>
             <option value="purple">f.s (purple)</option>
-        </select>
-        <label for="type-of-reserve-in-calendar">Choose reservation status</label>
-        <select id="type-of-reserve-in-calendar">
-            <option value="Bank card">Bank card</option>
-            <option value="Cash">Cash</option>
-            <option value="Bank card and Cash">Bank card and Cash</option>
         </select>
         <label for="notes-in-page-reserve-in-calendar">Guest notes</label>
         <textarea id="notes-in-page-reserve-in-calendar" rows="4"></textarea>

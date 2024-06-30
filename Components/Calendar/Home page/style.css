@@ -1,0 +1,126 @@
+#container-of-home-page-of-calendar {
+    width: 950px;
+    height: 570px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-right: 1px solid black;
+}
+
+#top-part-in-calendar {
+    height: 15px;
+    width: 949px;
+    background-color: rgb(16, 162, 160);
+    border-top-right-radius: 20px;
+}
+
+#part-of-days-and-type-in-calendar {
+    display: flex;
+    height: 45px;
+    width: 950px;
+    
+}
+
+#bottom-part-in-calendar {
+    height: 15px;
+    width: 949px;
+    background-color: rgb(16, 162, 160);
+    border-bottom-right-radius: 20px;
+}
+
+#room-display-grid-in-calendar {
+    overflow: scroll;
+    scrollbar-width: none;
+    height: 495px;
+    width: 950px;
+    border-top: 1px solid black;
+}
+
+#part-of-selection-type-in-calendar {
+ display: flex;
+  height: 45px;
+  width: 197px;
+  /* background-color: aqua; */
+}
+
+#part-of-current-days-in-calendar {
+    display :flex;
+    height: 45px;
+    width: 750px;
+}
+
+#box-of-day-in-calendar {
+    height: 45px;
+    width: 37.5px;
+}
+
+#top-part-in-pox-of-day-in-calendar {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    height: 22.5px;
+    width: 38px;
+    border-left: 1px solid rgb(30, 29, 29);
+}
+
+#bottom-part-in-pox-of-day-in-calendar {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    height: 22.5px;
+    width: 38px;
+    border-left: 1px solid rgb(30, 29, 29); 
+}
+
+.one-room-in-calendar {
+    display: flex;
+    height: 45px;
+    width: 950px;
+    border-bottom: 1px solid black;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.type-and-name-of-room-in-calendar {
+    height: 45px;
+    width: 197px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(200, 230, 220);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+
+.status-of-room-in-tewnty-days-in-calendar {
+    display: flex;
+}
+
+#box-of-guest-in-calendar {
+    display: flex;
+    justify-content: center;
+    align-items: center;    
+    height: 45px;
+    /* background-color: blue; */
+        border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+}
+
+.container-of-box-of-guest-in-calendar {
+    height: 45px;
+    border-left: 1px solid black;
+}
+
+#part-of-current-month-in-calendar {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height: 45px;
+    width: 38px;
+}
+
+#part-of-selection-type-of-room-in-calendar {
+    height: 45px;
+    /* background-color: rgb(226, 43, 58); */
+    border-right: 1px solid black;
+    width: 162px; 
+}
