@@ -2042,10 +2042,11 @@ function modifyDuration(bedIndex) {
 
 //get page of payment
 function getPageOfPayment() {
+    createListOfCardPayment(hotel.listOfRooms);
     document.getElementById(currentIdInDisplayInformation).style.display = 'none';
     document.getElementById(currentIdInModifysettings).style.display = 'none';
     document.getElementById(currentPage).style.display = 'none';
-    currentPage = 'page-of-payment';
+    currentPage = 'container-of-page-of-payment';
     document.getElementById(currentPage).style.display = 'block';
 }
 /*********************************************************/

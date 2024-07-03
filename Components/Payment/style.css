@@ -1,0 +1,158 @@
+#container-of-page-of-payment {
+    width: 950px;
+    height: 570px;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.top-part-in-payment {
+    height: 16px;
+    width: 949px;
+    border-top-right-radius: 60px;
+    background-color: rgb(16, 162, 160);
+}
+
+.bottom-part-in-payment {
+    height: 16px;
+    width: 949px;
+    border-bottom-right-radius: 60px;
+    background-color: rgb(16, 162, 160);
+}
+
+#show-guests-in-payment {
+    width:950px;
+    height: 538px;
+}
+
+#part-of-select-in-show-guests-in-payment {
+    display: flex;
+    height: 40px;
+    width: 950px;
+}
+
+#part-of-show-information-of-guests-in-payment {
+    display: flex;
+    height: 498px;
+    width: 950px;
+}
+
+#part-of-show-information-of-guests-in-payment-card-paid {
+    border-right: 0.5px solid rgb(16, 162, 160);
+    scrollbar-width: none;
+    overflow: scroll;
+    height: 498px;
+    width: 475px;
+}
+
+#part-of-show-information-of-guests-in-payment-cash-paid {
+    border-left: 0.5px solid rgb(16, 162, 160);
+    scrollbar-width: none;
+    overflow: scroll;
+    height: 498px;
+    width: 475px;
+}
+
+.one-guest-in-payment {
+    display: flex;
+    margin-left: 3px;
+    height : 50px;
+    width: 469px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-radius: 20px;
+    background-color: rgb(224, 223, 222);
+}
+
+#part-of-room-in-one-guest-in-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height : 50px;
+    width: 100px;
+    border-right: 1px solid white;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;  
+}
+
+#part-of-name-guest-in-one-guest-in-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height : 50px;
+    width: 249px;
+    border-right: 1px solid white; 
+}
+
+#part-of-percentage-in-payment {
+    height : 50px;
+    width: 60px;
+    border-right: 1px solid white;
+}
+
+#part-of-type-of-paid-in-one-guest-in-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height : 50px;
+    width: 60px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px; 
+}
+
+#part-of-type-of-paid-in-one-guest-in-payment i {
+   padding: 20px;
+} 
+
+#first-part-in-part-of-select-in-show-guests-in-payment {
+    border: 0.5px solid rgb(16, 162, 160);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 310px;
+}
+
+#second-part-in-part-of-select-in-show-guests-in-payment {
+    border: 0.5px solid rgb(16, 162, 160);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 330px;
+}
+
+#third-part-in-part-of-select-in-show-guests-in-payment {
+    border: 0.5px solid rgb(16, 162, 160);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 310px;
+}
+
+#first-part-in-second-part-in-part-of-select-in-show-guests-in-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 110px;
+}
+
+#part-of-date-in-second-part-in-part-of-select-in-show-guests-in-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 140px;
+}
+
+#button-of-submit-date-in-second-part-in-part-of-select-in-show-guests-in-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 80px;
+}

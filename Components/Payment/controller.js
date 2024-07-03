@@ -1,37 +1,99 @@
-//an action that allows creating a table of current guests and displaying their payment information
-function createPageOfPayment(LIST_OF_ROOMS) {
-  var page = ``;
 
-  page += `
-   <div class="half guest-list">
-        <div id="part-of-selected-type-paid-in-payment">
+var hotel = new Hotel();
 
-        </div>
-        <div id="part-of-titles-in-payment">
-           <div class="first-name-in-payment">first name</div>
-           <div class="last-name-in-payment">last name</div>
-           <div class="room-in-payment">room</div>
-           <div class="percentage-in-payment">percentage</div>
-        </div>
-        <div id="part-of-show-guests-in-payment">
-            <table>
-                <tbody>`;
-        for(let i = 0 ; i < LIST_OF_ROOMS.length ; i++){
-                    page += `<tr>
-                        <td>${1}</td>
-                        <td>${1}</td>
-                        <td>${1} 101</td>
-                        <td>${1}</td>
-                    </tr>`;
-        }
-                page += `</tbody>
-            </table>
-        </div>
-    </div>
-    <div class="half invoice">
+function createListOfCardPayment(LIST_OF_ROOMS) {
+    var guestsByCard = ``;
+    var guestsByCash = ``;
+    
+    for(let i = 0 ; i < hotel.listOfRooms.length ; i++) {
+        for(let j = 0 ; j < hotel.listOfRooms[i].numberOfBeds ; j++) {
+            for(let k = 0 ; k < hotel.listOfRooms[i].listOfResidentsInBed[j].length ; k++){
+            guestsByCard += `
+       <div class="one-guest-in-payment">
+         <div id="part-of-room-in-one-guest-in-payment">
+            ${hotel.listOfRooms[i].typeOfRoom}-B${j + 1}
+         </div>
+         <div id="part-of-name-guest-in-one-guest-in-payment">
+           ${hotel.listOfRooms[i].listOfResidentsInBed[j][k].firstName}
+         </div>
+         <div id="part-of-percentage-in-payment">
         
-    </div>
-  `;
+         </div>
+         <div id="part-of-type-of-paid-in-one-guest-in-payment">
+           <i class="fa-solid fa-money-bill"></i>
+         </div>
+       </div>
+         `;
+            }
+        }
+    }
+    // for(let i = 0 ; i < 100 ; i++) {
+    //     guestsByCard += `
+    //     <div class="one-guest-in-payment">
+                    
+    //               </div>
+    //     `;
+    //     guestsByCash += `
+    //     <div class="one-guest-in-payment">
+                    
+    //               </div>
+    //     `;
+    // }
 
-    return page;
+    document.getElementById('part-of-show-information-of-guests-in-payment-card-paid') .innerHTML = guestsByCard;
+    document.getElementById('part-of-show-information-of-guests-in-payment-cash-paid') .innerHTML = guestsByCard;
+}
+
+//createListOfCardPayment(hotel.listOfRooms);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//function of virtual emulater
+function createRandomListOfCardPayment() {
+    var LIST = [];
+    var size = 5 + Math.floor(Math.random() * 50);
+    for (let i = 0; i < size; i++) {
+        var name = getRandomName();
+        var type = getRandomType();
+        var paid = getRandomPaid();
+
+        //  PaymentProcess newPaymentProcess = new PaymentProcess();
+    }
+    return LIST;
+}
+
+//get random name
+function getRandomName() {
+    const names = [
+        "James", "Mary", "John", "Patricia", "Robert", "Jennifer",
+        "Michael", "Linda", "William", "Elizabeth", "David", "Barbara",
+        "Richard", "Susan", "Joseph", "Jessica", "Thomas", "Sarah",
+        "Charles", "Karen", "Christopher", "Nancy", "Daniel", "Lisa",
+        "Matthew", "Betty", "Anthony", "Margaret", "Mark", "Sandra"
+    ];
+
+    return names[Math.floor(Math.random() % names.length)];
+}
+
+//get random type
+function getRandomType() {
+    const types = ["cash", "card"];
+    return types[Math.floor(Math.random() % types.length)];
+}
+
+//get random paid
+function getRandomPaid() {
+    return Math.random() * 200;
 }

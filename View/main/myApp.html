@@ -20,6 +20,7 @@
      <link rel="stylesheet" href="../../Components/Calendar/Reserve/style.css">
      <link rel="stylesheet" href="../../Components/Calendar/Home page/style.css">
      <link rel="stylesheet" href="../../Components/Calendar/Modify/style.css">
+     <link rel="stylesheet" href="../../Components/Payment/style.css">
      <script src="../../Components/Calendar/Reserve/controller.js"></script>
      <script src="../../Components/Calendar/Home page/controller.js"></script>
      <script src="../../Components/Calendar/Modify/controller.js"></script>
@@ -221,6 +222,46 @@
         <div id="page-of-payment" style="display: none;">
             <!--  -->
         </div>
+        
+        <!-- display information -->
+        <div id="container-of-page-of-payment" style="display: none;">
+            <div class="top-part-in-payment">
+            </div>
+            <div id="show-guests-in-payment">
+                <div id="part-of-select-in-show-guests-in-payment">
+                    <div id="first-part-in-part-of-select-in-show-guests-in-payment">
+                       <h2>Card paid</h2>
+                    </div>
+                    <div id="second-part-in-part-of-select-in-show-guests-in-payment">
+                        <div id="first-part-in-second-part-in-part-of-select-in-show-guests-in-payment">
+                          <h3>Date of paid</h3>
+                        </div>
+                        <div id="part-of-date-in-second-part-in-part-of-select-in-show-guests-in-payment">
+                          <input type="date" id="select-date-in-payment">
+                        </div>
+                        <div id="button-of-submit-date-in-second-part-in-part-of-select-in-show-guests-in-payment">
+                             <button>Serach</button>
+                        </div>
+                    </div>
+                    <div id="third-part-in-part-of-select-in-show-guests-in-payment">
+                        <h2>Cash paid</h2>
+                    </div>
+                </div>
+                <div id="part-of-show-information-of-guests-in-payment">
+                    <div id="part-of-show-information-of-guests-in-payment-card-paid">
+                      <!-- filling bu Js -->
+                    </div>
+                    <div id="part-of-show-information-of-guests-in-payment-cash-paid">
+                         <!-- filling bu Js -->
+                    </div>
+                </div>
+            </div>
+            <div class="bottom-part-in-payment">
+    
+            </div>
+        </div>
+
+        
 
         <!-- display information -->
         <div class="page-of-price-settings" id="page-of-price-of-others-settings" style="display: none;">
@@ -405,5 +446,6 @@
     <div id="card-of-info" style="display: none;"></div>
 
 </body>
-
+<script src="../../Components/Payment/PaymentProcess.js"></script>
+     <script src="../../Components/Payment/controller.js"></script>
 </html>

@@ -162,7 +162,8 @@ class rsdnt {
     note;
     paidByCard;
     paidByCash;
-
+    listOfPaid = [];
+    
     constructor(firstName, lastName, country, email, startDate, BirthDate, gender,
         durationOfReservation, totalPayment , color , note , paidByCard , paidByCash) {
         this.paidByCash = paidByCash;
@@ -434,7 +435,7 @@ class Room {
                 10
              );
              
-            // this.listOfResidentsInBed[i].push(abc);
+             this.listOfResidentsInBed[i].push(abc);
             
             this.positionOfBeds[i] = getPosition();
             
