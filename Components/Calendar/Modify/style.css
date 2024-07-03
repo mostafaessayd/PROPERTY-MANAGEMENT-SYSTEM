@@ -24,7 +24,7 @@
 }
 
 .section-in-modify-reserve-in-calendar textarea {
-    height: 160px;
+    height: 136px;
 }
 
 .section-in-modify-reserve-in-calendar button {
@@ -47,4 +47,8 @@
     padding: 8px;
     box-sizing: border-box;
     border-radius: 20px;
+}
+
+.container-of-two-buttons-in-modify-calendar input {
+    width: 50%;
 }

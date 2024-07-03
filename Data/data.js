@@ -163,11 +163,18 @@ class rsdnt {
     paidByCard;
     paidByCash;
     listOfPaid = [];
-    
+
     constructor(firstName, lastName, country, email, startDate, BirthDate, gender,
         durationOfReservation, totalPayment , color , note , paidByCard , paidByCash) {
-        this.paidByCash = paidByCash;
-        this.paidByCard = paidByCard;
+        if(this.paidByCard !== 0) {
+            var p = new PaymentProcess(new Date() , paidByCard , "Card");
+            this.listOfPaid.push(p);
+        }
+        if(this.paidByCash !== 0) {
+            var p = new PaymentProcess(new Date() , paidByCash , "Cash");
+            this.listOfPaid.push(p);
+        }
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.country = country;
@@ -181,6 +188,29 @@ class rsdnt {
         this.totalPayment = totalPayment; // Private variable for totalPayment
         this.remaningPayment = totalPayment; // Initialize remainingPayment with totalPayment
         this.payedPayment = 0; // Initialize payedPayment as 0
+    }
+    
+    //get paid by cash
+     getPaidByCash() {
+        var sum = 0;
+        for(let i = 0 ; i < this.listOfPaid.length ; i++) {
+            if(this.listOfPaid[i].paymentType === "Cash") {
+                sum += this.listOfPaid[i].amountPaid;
+            }
+        }
+        return sum;
+    }
+
+     //get paid by card
+     getPaidByCard() {
+        var sum = 0;
+        for(let i = 0 ; i < this.listOfPaid.length ; i++) {
+            if(this.listOfPaid[i].paymentType === "Card") {
+                sum += this.listOfPaid[i].amountPaid;
+            }
+        }
+        alert(sum);
+        return sum;
     }
 
     // Getter and Setter for firstName

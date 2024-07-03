@@ -1,20 +1,20 @@
 
-var hotel = new Hotel();
+//var hotel = new Hotel();
 
 function createListOfCardPayment(LIST_OF_ROOMS) {
     var guestsByCard = ``;
     var guestsByCash = ``;
     
-    for(let i = 0 ; i < hotel.listOfRooms.length ; i++) {
-        for(let j = 0 ; j < hotel.listOfRooms[i].numberOfBeds ; j++) {
-            for(let k = 0 ; k < hotel.listOfRooms[i].listOfResidentsInBed[j].length ; k++){
+    for(let i = 0 ; i < LIST_OF_ROOMS.length ; i++) {
+        for(let j = 0 ; j < LIST_OF_ROOMS[i].numberOfBeds ; j++) {
+            for(let k = 0 ; k < LIST_OF_ROOMS[i].listOfResidentsInBed[j].length ; k++){
             guestsByCard += `
        <div class="one-guest-in-payment">
          <div id="part-of-room-in-one-guest-in-payment">
-            ${hotel.listOfRooms[i].typeOfRoom}-B${j + 1}
+            ${LIST_OF_ROOMS[i].typeOfRoom}-B${j + 1}
          </div>
          <div id="part-of-name-guest-in-one-guest-in-payment">
-           ${hotel.listOfRooms[i].listOfResidentsInBed[j][k].firstName}
+           ${LIST_OF_ROOMS[i].listOfResidentsInBed[j][k].firstName}
          </div>
          <div id="part-of-percentage-in-payment">
         
@@ -41,7 +41,7 @@ function createListOfCardPayment(LIST_OF_ROOMS) {
     // }
 
     document.getElementById('part-of-show-information-of-guests-in-payment-card-paid') .innerHTML = guestsByCard;
-    document.getElementById('part-of-show-information-of-guests-in-payment-cash-paid') .innerHTML = guestsByCard;
+    document.getElementById('part-of-show-information-of-guests-in-payment-cash-paid') .innerHTML = guestsByCash;
 }
 
 //createListOfCardPayment(hotel.listOfRooms);

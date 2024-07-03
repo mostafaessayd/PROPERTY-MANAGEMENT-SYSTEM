@@ -53,10 +53,22 @@ function createPageOfModifyReserveGuest(floor , room , bed , nbrcase , nbrReside
 
 
     page += `<!--<h2>Reservation status</h2>-->
+        <div class="container-of-two-buttons-in-modify-calendar">
         <label for="amount-paid-by-card-in-page-modify-reserve-in-calendar">The amount paid by card</label>
-        <input type="number" id="amount-paid-by-card-in-page-modify-reserve-in-calendar">
+        <input type="number" id="amount-paid-by-card-in-page-modify-reserve-in-calendar" readonly>
         <label for="amount-paid-in-cash-in-page-modify-reserve-in-calendar">The amount paid in cash</label>
-        <input type="number" id="amount-paid-in-cash-in-page-modify-reserve-in-calendar">
+        <input type="number" id="amount-paid-in-cash-in-page-modify-reserve-in-calendar" readonly>
+        </div>
+        <div class="container-of-two-buttons-in-modify-calendar">
+        <label for="amount-paid-by-card-in-page-modify-reserve-in-calendar">Add new paid</label>
+        <input type="number" id="new-paid-in-page-modify-reserve-in-calendar">
+        <label for="amount-paid-in-cash-in-page-modify-reserve-in-calendar">Type of paid</label>
+        <select id="select-of-type-paid-in-payment">
+                  <option value="0">Cash</option>
+                  <option value="0">Card</option>
+                </select>
+        <button>add</button>
+        </div>
         <label for="color-in-page-modify-reserve-in-calendar">Choose reservation status</label>
         <select id="color-in-page-modify-reserve-in-calendar">
             <option value="red">broken (red)</option>
@@ -94,8 +106,19 @@ function createPageOfModifyReserveGuest(floor , room , bed , nbrcase , nbrReside
     document.getElementById('country-in-page-modify-reserve-in-calendar').value = resident.country;
     document.getElementById('gender-in-page-modify-reserve-in-calendar').value = resident.gender;
     document.getElementById('notes-in-page-modify-reserve-in-calendar').value = resident.note;
-    document.getElementById('amount-paid-in-cash-in-page-modify-reserve-in-calendar').value = resident.paidByCash;
-    document.getElementById('amount-paid-by-card-in-page-modify-reserve-in-calendar').value = resident.paidByCard;
+
+    var a = 0;
+    var b = 0;
+    for(let i = 0 ; i < resident.listOfPaid.length ; i++) {
+        if(resident.listOfPaid[i].paymentType === "Cash") {
+            a += resident.listOfPaid[i].amountPaid;
+        }else {
+            b += resident.listOfPaid[i].amountPaid;
+        }
+    }
+    
+    document.getElementById('amount-paid-in-cash-in-page-modify-reserve-in-calendar').value = a;
+    document.getElementById('amount-paid-by-card-in-page-modify-reserve-in-calendar').value = b;
 
 
     document.getElementById('color-in-page-modify-reserve-in-calendar').value = resident.color;
