@@ -466,7 +466,7 @@ class Room {
              );
              
              this.listOfResidentsInBed[i].push(abc);
-            
+             
             this.positionOfBeds[i] = getPosition();
             
             if (this.statusOfBeds[i] === true) {
@@ -485,7 +485,7 @@ class Room {
             }
         }
     }
-
+    
     getRandomStatus() {
         var ans = [true, false];
         return ans[Math.floor(Math.random() * ans.length)];

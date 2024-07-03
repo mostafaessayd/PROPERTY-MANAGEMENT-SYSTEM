@@ -1,6 +1,6 @@
 
 //create a page that contains all the basic information for the guest
-function createPageOfModifyReserveGuest(floor , room , bed , nbrcase , nbrResident , resident) {
+function createPageOfModifyReserveGuest(LIST_OF_ROOMS , floor , room , bed , nbrcase , nbrResident , resident) {
     var page = ``;
 
     page += `
@@ -61,13 +61,19 @@ function createPageOfModifyReserveGuest(floor , room , bed , nbrcase , nbrReside
         </div>
         <div class="container-of-two-buttons-in-modify-calendar">
         <label for="amount-paid-by-card-in-page-modify-reserve-in-calendar">Add new paid</label>
-        <input type="number" id="new-paid-in-page-modify-reserve-in-calendar">
+        <input type="number" id="new-paid-in-page-modify-reserve-in-payment">
         <label for="amount-paid-in-cash-in-page-modify-reserve-in-calendar">Type of paid</label>
         <select id="select-of-type-paid-in-payment">
-                  <option value="0">Cash</option>
-                  <option value="0">Card</option>
+                  <option value="Cash">Cash</option>
+                  <option value="Card">Card</option>
                 </select>
-        <button>add</button>
+        <button onclick="addNewPayment(
+                ${JSON.stringify(LIST_OF_ROOMS).replace(/"/g, '&quot;')} ,
+                ${JSON.stringify(floor).replace(/"/g, '&quot;')} , 
+                ${JSON.stringify(room).replace(/"/g, '&quot;')} , 
+                ${JSON.stringify(bed).replace(/"/g, '&quot;')} , 
+                ${JSON.stringify(nbrResident).replace(/"/g, '&quot;')}
+            )">add</button>
         </div>
         <label for="color-in-page-modify-reserve-in-calendar">Choose reservation status</label>
         <select id="color-in-page-modify-reserve-in-calendar">
@@ -156,4 +162,21 @@ function createPageOfModifyReserveGuest(floor , room , bed , nbrcase , nbrReside
 //returns the selected date in the calendar as the start date of the reservation
 function getSelectedStartDate() {
     return SELECTED_START_DATE;
+}
+
+function addNewPayment(LIST_OF_ROOMS , floor , room , Bed , numberOfResident) {
+    var newPaid = document.getElementById('new-paid-in-page-modify-reserve-in-payment').value;
+    newPaid = parseInt(newPaid);
+    var typeOfpaid = document.getElementById('select-of-type-paid-in-payment').value;
+    var crDate = new Date();
+    crDate = formatDate1(crDate);
+    var p = new PaymentProcess(crDate , newPaid , typeOfpaid);
+    
+    // for(let i = 0 ; i < LIST_OF_ROOMS.length ; i++) {
+    //     if (LIST_OF_ROOMS[i].floorNumber === floor && LIST_OF_ROOMS[i].roomNumber === room){
+    //         LIST_OF_ROOMS[i].listOfResidentsInBed[Bed][numberOfResident].push(p);
+    //         break;
+    //     }
+    // }
+    
 }

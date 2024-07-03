@@ -26,7 +26,8 @@ function createRoomDisplayGridInCalendar(LIST_OF_ROOMS) {
                         dest = 20 - k;
                     }
                     page += `
-        <div id="box-of-guest-in-calendar" style="width:${dest* 37.5}px;background-color:${answer.color};" onclick="createPageOfModifyReserveGuest(${JSON.stringify(LIST_OF_ROOMS[i].floorNumber).replace(/"/g, '&quot;')} ,
+        <div id="box-of-guest-in-calendar" style="width:${dest* 37.5}px;background-color:${answer.color};" onclick="createPageOfModifyReserveGuest(${JSON.stringify(LIST_OF_ROOMS).replace(/"/g, '&quot;')} ,
+        ${JSON.stringify(LIST_OF_ROOMS[i].floorNumber).replace(/"/g, '&quot;')} ,
                     ${JSON.stringify(LIST_OF_ROOMS[i].roomNumber).replace(/"/g, '&quot;')} ,
                     ${JSON.stringify(j).replace(/"/g, '&quot;')} , 
                     ${JSON.stringify(k).replace(/"/g, '&quot;')} , 
