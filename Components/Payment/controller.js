@@ -423,7 +423,7 @@ function getEnddate(startDate, days) {
     // Format the end date as dd/mm/yy
     let formattedEndDate = `${endDay.toString().padStart(2, '0')}/${endMonth.toString().padStart(2, '0')}/${endYear.toString().padStart(2, '0')}`;
 
-    return formattedEndDate;
+    return formatDate1(endDateObj);
 }
 
 
