@@ -50,9 +50,9 @@ function createPageOfReserveGuest() {
 
     page += `<!--<h2>Reservation status</h2>-->
         <label for="amount-paid-by-card-in-page-reserve-in-calendar">The amount paid by card</label>
-        <input type="number" id="amount-paid-by-card-in-page-reserve-in-calendar" min="1">
+        <input type="number" id="amount-paid-by-card-in-page-reserve-in-calendar" value="0">
         <label for="amount-paid-in-cash-in-page-reserve-in-calendar">The amount paid in cash</label>
-        <input type="number" id="amount-paid-in-cash-in-page-reserve-in-calendar" min="1">
+        <input type="number" id="amount-paid-in-cash-in-page-reserve-in-calendar" value="0">
         <label for="color-in-page-reserve-in-calendar">Choose reservation status</label>
         <select id="color-in-page-reserve-in-calendar">
             <option value="red">broken (red)</option>

@@ -1631,6 +1631,24 @@ function saveModify(floor , room , bed , nbrResident) {
   getCalendarPage();
 }
 
+
+function addNewPayment(LIST_OF_ROOMS , floor , room , Bed , numberOfResident) {
+    var newPaid = document.getElementById('new-paid-in-page-modify-reserve-in-payment').value;
+    newPaid = parseInt(newPaid);
+    var typeOfpaid = document.getElementById('select-of-type-paid-in-payment').value;
+    var crDate = new Date();
+    crDate = formatDate1(crDate);
+    var p = new PaymentProcess(crDate , newPaid , typeOfpaid);
+    
+    for(let i = 0 ; i < hotel.listOfRooms.length ; i++) {
+        if (hotel.listOfRooms[i].floorNumber === floor && hotel.listOfRooms[i].roomNumber === room){
+            hotel.listOfRooms[i].listOfResidentsInBed[Bed][numberOfResident].listOfPaid.push(p);
+            break;
+        }
+    }
+    
+}
+
 function getSettingReservedInCalendar() {
 
 }
@@ -1682,6 +1700,7 @@ function saveReserveInCalendar() {
                 arrivalTime,
                 bankCardNumber,
                 duration);
+
             var dt = new Date(startDate);
             dt = formatDate1(dt);
             var newResident = new rsdnt(
@@ -1699,7 +1718,6 @@ function saveReserveInCalendar() {
                 paidByCard , 
                 paidByCash
             );
-
             hotel.listOfRooms[i].listOfResidentsInBed[targetBed].push(newResident);
         
             break;

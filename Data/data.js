@@ -32,43 +32,43 @@ class Hotel {
         //         this.listOfRooms.push(room);
         //     }
         // }
-        
+
         let k = 1;
 
-            var room = new Room(1 , k , 8 , "001");
-            this.listOfRooms.push(room);
-            k++;
-        
-            var room = new Room(1 , k , 8 , "101");
-            this.listOfRooms.push(room);
-            k++;
-        
-            var room = new Room(1 , k , 8 , "102");
-            this.listOfRooms.push(room);
-            k++;
-        
-            var room = new Room(1 , k , 4 , "103");
-            this.listOfRooms.push(room);
-            k++;
-        
-            var room = new Room(1 , k , 8 , "201");
-            this.listOfRooms.push(room);
-            k++;
-       
-            var room = new Room(1 , k , 6 , "202");
-            this.listOfRooms.push(room);
-            k++;
-      
-            var room = new Room(1 , k , 6 , "203");
-            this.listOfRooms.push(room);
-            k++;
-    
-            var room = new Room(1 , k , 4 , "301");
-            this.listOfRooms.push(room);
-            k++;
-           
-            var room = new Room(1 , k , 6 , "302");
-            this.listOfRooms.push(room);
+        var room = new Room(1, k, 8, "001");
+        this.listOfRooms.push(room);
+        k++;
+
+        var room = new Room(1, k, 8, "101");
+        this.listOfRooms.push(room);
+        k++;
+
+        var room = new Room(1, k, 8, "102");
+        this.listOfRooms.push(room);
+        k++;
+
+        var room = new Room(1, k, 4, "103");
+        this.listOfRooms.push(room);
+        k++;
+
+        var room = new Room(1, k, 8, "201");
+        this.listOfRooms.push(room);
+        k++;
+
+        var room = new Room(1, k, 6, "202");
+        this.listOfRooms.push(room);
+        k++;
+
+        var room = new Room(1, k, 6, "203");
+        this.listOfRooms.push(room);
+        k++;
+
+        var room = new Room(1, k, 4, "301");
+        this.listOfRooms.push(room);
+        k++;
+
+        var room = new Room(1, k, 6, "302");
+        this.listOfRooms.push(room);
 
     }
 
@@ -136,13 +136,13 @@ class Hotel {
 }
 
 var arrayOfRoomTypes = [
-    {type : "All" , femaleBeds :-1 , maleBeds :-1 , isMixed : true , numberOfAllBeds : -1} ,
-    {type : "Private mixed room" , femaleBeds :1 , maleBeds :1 , isMixed : true , numberOfAllBeds : 2} ,
-    {type : "Private un mixed room" , femaleBeds :2 , maleBeds :0 , isMixed : false , numberOfAllBeds : 2} ,
-    {type : "8 bed mixed room" , femaleBeds :8 , maleBeds :8 , isMixed : true , numberOfAllBeds : 8} ,
-    {type : "6 bed female room" , femaleBeds : 6 , maleBeds : 0 , isMixed : false , numberOfAllBeds : 6} ,
-    {type : "6 bed mixed room" , femaleBeds : 6 , maleBeds : 6 , isMixed : true , numberOfAllBeds : 6} ,
-    {type : "4 bed mixed room" , femaleBeds : 4 , maleBeds : 4 , isMixed : true , numberOfAllBeds : 4} ,
+    { type: "All", femaleBeds: -1, maleBeds: -1, isMixed: true, numberOfAllBeds: -1 },
+    { type: "Private mixed room", femaleBeds: 1, maleBeds: 1, isMixed: true, numberOfAllBeds: 2 },
+    { type: "Private un mixed room", femaleBeds: 2, maleBeds: 0, isMixed: false, numberOfAllBeds: 2 },
+    { type: "8 bed mixed room", femaleBeds: 8, maleBeds: 8, isMixed: true, numberOfAllBeds: 8 },
+    { type: "6 bed female room", femaleBeds: 6, maleBeds: 0, isMixed: false, numberOfAllBeds: 6 },
+    { type: "6 bed mixed room", femaleBeds: 6, maleBeds: 6, isMixed: true, numberOfAllBeds: 6 },
+    { type: "4 bed mixed room", femaleBeds: 4, maleBeds: 4, isMixed: true, numberOfAllBeds: 4 },
 ];
 
 class rsdnt {
@@ -165,13 +165,27 @@ class rsdnt {
     listOfPaid = [];
 
     constructor(firstName, lastName, country, email, startDate, BirthDate, gender,
-        durationOfReservation, totalPayment , color , note , paidByCard , paidByCash) {
-        if(this.paidByCard !== 0) {
-            var p = new PaymentProcess(new Date() , paidByCard , "Card");
-            this.listOfPaid.push(p);
-        }
-        if(this.paidByCash !== 0) {
-            var p = new PaymentProcess(new Date() , paidByCash , "Cash");
+        durationOfReservation, totalPayment, color, note, paidByCard, paidByCash) {
+            paidByCard = parseInt(paidByCard);
+            paidByCash = parseInt(paidByCash);
+
+            if (paidByCard !== 0) {
+                var p = new PaymentProcess(formatDate1(new Date()), paidByCard, "Card");
+                this.listOfPaid.push(p);
+            }
+            if (paidByCash !== 0) {
+                var p = new PaymentProcess(formatDate1(new Date()), paidByCash, "Cash");
+                this.listOfPaid.push(p);
+            }
+        
+            const ab = ['Card' , 'Cash'];
+            var op = ab[Math.floor(Math.random() * 2)];
+
+        for(let i = 0 ; i < 30 ; i++) {
+            var date = new Date();
+            date.setDate(date.getDate() + Math.floor(Math.random() * 30));
+            date = formatDate1(date);
+            var p = new PaymentProcess(date, 2 +  Math.floor(Math.random() * 30) , op);
             this.listOfPaid.push(p);
         }
 
@@ -189,23 +203,23 @@ class rsdnt {
         this.remaningPayment = totalPayment; // Initialize remainingPayment with totalPayment
         this.payedPayment = 0; // Initialize payedPayment as 0
     }
-    
+
     //get paid by cash
-     getPaidByCash() {
+    getPaidByCash() {
         var sum = 0;
-        for(let i = 0 ; i < this.listOfPaid.length ; i++) {
-            if(this.listOfPaid[i].paymentType === "Cash") {
+        for (let i = 0; i < this.listOfPaid.length; i++) {
+            if (this.listOfPaid[i].paymentType === "Cash") {
                 sum += this.listOfPaid[i].amountPaid;
             }
         }
         return sum;
     }
 
-     //get paid by card
-     getPaidByCard() {
+    //get paid by card
+    getPaidByCard() {
         var sum = 0;
-        for(let i = 0 ; i < this.listOfPaid.length ; i++) {
-            if(this.listOfPaid[i].paymentType === "Card") {
+        for (let i = 0; i < this.listOfPaid.length; i++) {
+            if (this.listOfPaid[i].paymentType === "Card") {
                 sum += this.listOfPaid[i].amountPaid;
             }
         }
@@ -332,23 +346,23 @@ function formatDate1(date) {
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0'); // January is 0, so we add 1
     const year = String(date.getFullYear()).slice(-2); // Get last two digits of the year
-  
+
     // Return formatted date string in dd/mm/yy format
     return `${day}/${month}/${year}`;
-  }
-  
-  function datesAreEqual(dateStr1, dateStr2) {
+}
+
+function datesAreEqual(dateStr1, dateStr2) {
     // Split the date strings into day, month, and year parts
     const [day1, month1, year1] = dateStr1.split('/');
     const [day2, month2, year2] = dateStr2.split('/');
-  
+
     // Create Date objects from the parsed parts (months are 0-indexed in Date constructor)
     const date1 = new Date(`20${year1}`, month1 - 1, day1); // Assuming '20' is prefix for year 2000+
     const date2 = new Date(`20${year2}`, month2 - 1, day2);
-  
+
     // Compare the Date objects
     return date1.getTime() === date2.getTime(); // Compare milliseconds since Unix epoch
-  }
+}
 
 
 class Room {
@@ -397,8 +411,8 @@ class Room {
     chairs;
     wayOfReservation;
     typeOfRoom;
-    
-    constructor(floorNumber, roomNumber , nbrBed , name) {
+
+    constructor(floorNumber, roomNumber, nbrBed, name) {
 
         //this.numberOfBeds = 2 + Math.floor(Math.random() * 7);
         this.numberOfBeds = nbrBed;
@@ -444,31 +458,31 @@ class Room {
 
         for (let i = 0; i < this.numberOfBeds; i++) {
             this.listOfResidentsInBed[i] = [];
-            
+
             var gt = new Date();
             gt = formatDate1(gt);
 
             var brth = getRandomStartDate();
             var abc = new rsdnt(
-                getRandomResident('Reserved') ,
-                "esso" ,
-                "senegal" ,
-                "hjhdjh@email.com" ,
-                 gt ,
-                brth ,
-                "male" ,
-                3 ,
-                111 ,
-                "blue" ,
-                "" , 
-                10 , 
-                10
-             );
-             
-             this.listOfResidentsInBed[i].push(abc);
-             
+                getRandomResident('Reserved'),
+                "esso",
+                "senegal",
+                "hjhdjh@email.com",
+                gt,
+                brth,
+                "male",
+                3,
+                111,
+                "blue",
+                "",
+                0,
+                0
+            );
+
+              this.listOfResidentsInBed[i].push(abc);
+
             this.positionOfBeds[i] = getPosition();
-            
+
             if (this.statusOfBeds[i] === true) {
                 this.startDateOfResidentInBeds[i] = getRandomStartDate();
                 var fn = getRandomResident('Reserved');
@@ -479,13 +493,13 @@ class Room {
                 var arv = "00 : 00 pm";
                 var dr = 5 + Math.floor(Math.random() * 90);
                 var startDate = new Date() + Math.floor(Math.random() * 20);
-              //  this.residentOfBeds[i] = new Resident(fn, ln, em, cont, arv, cr, dr, startDate);
-                
+                //  this.residentOfBeds[i] = new Resident(fn, ln, em, cont, arv, cr, dr, startDate);
+
                 this.durationOfReservationOfBeds[i] = 1 + Math.floor(Math.random() * 200);;
             }
         }
     }
-    
+
     getRandomStatus() {
         var ans = [true, false];
         return ans[Math.floor(Math.random() * ans.length)];
@@ -812,7 +826,7 @@ class Account {
 //         <div class="menu-item" id="rooms" onclick="goToPageOfRooms()"><div class="icon-of-button"><i class="fa-solid fa-door-open"></i></div><div class="text-of-button">Rooms</div></div>
 //         <div class="menu-item" id="clock" onclick="getPageOfClock()"><div class="icon-of-button"><i class="fa-solid fa-magnifying-glass"></i></i></div><div class="text-of-button">Search</div></div>
 //         <div class="menu-item" id="settings" onclick="generatePageOfSettings()"><div class="icon-of-button"><i class="fa-solid fa-gear"></i></div><div class="text-of-button">Settings</div></div>
-//         <div class="menu-item" id="calendar" onclick="getCalendarPage()"><div class="icon-of-button"><i class="fa-regular fa-calendar"></i></div><div class="text-of-button">Calendar</div></div> 
+//         <div class="menu-item" id="calendar" onclick="getCalendarPage()"><div class="icon-of-button"><i class="fa-regular fa-calendar"></i></div><div class="text-of-button">Calendar</div></div>
 //         `;
 
 //     if (currentUser === 'admin') {

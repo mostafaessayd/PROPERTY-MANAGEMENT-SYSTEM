@@ -11,6 +11,7 @@
 
 
       <!-- constants -->
+       <script src="../../Components/Payment/PaymentProcess.js"></script>
        <script src="../../Data/data.js"></script>
        <script src="../../Constants/listOfCountries.js"></script>
        <script src="../../Constants/variables.js"></script>
@@ -240,7 +241,7 @@
                           <input type="date" id="select-date-in-payment">
                         </div>
                         <div id="button-of-submit-date-in-second-part-in-part-of-select-in-show-guests-in-payment">
-                             <button>Serach</button>
+                             <button onclick="searchByDateInPayment()">Serach</button>
                         </div>
                     </div>
                     <div id="third-part-in-part-of-select-in-show-guests-in-payment">
@@ -256,15 +257,39 @@
                           
                         </div>
                         <div id="part-of-options-in-paid-of-guest-in-card-payment">
-                            <button onclick="backToShowListOfCardPaid()">Back</button>
-                            <button>get facture</button>
+                            <button class="back-button-in-payment" onclick="backToShowListOfCardPaid()">Back</button>
+                            <button class="option-button-in-payment" onclick="getBillOfCardPayment()">get facture</button>
+                        </div>
+                    </div>
+                    <div id="bill-of-selected-resident-in-card-payment" style="display: none;">
+                        <div id="part-of-bill-of-selected-resident-in-card-payment">
+                          
+                        </div>
+                        <div id="part-of-options-of-bill-of-selected-resident-in-card-payment">
+                            <button class="back-button-in-payment" onclick="backToShowInformationOfSelectedResident_Card()">Back</button>
+                            <button class="option-button-in-payment">print facture</button>
                         </div>
                     </div>
                     <div id="part-of-show-information-of-guests-in-payment-cash-paid">
                         <!-- filling bu Js -->
                     </div>
                     <div id="information-of-selected-guest-in-cash-payment" style="display: none;">
-                        <!-- filling by js -->
+                        <div id="part-of-all-paid-of-guest-in-cash-payment">
+                          
+                        </div>
+                        <div id="part-of-options-in-paid-of-guest-in-cash-payment">
+                            <button class="back-button-in-payment" onclick="backToShowListOfCashPaid()">Back</button>
+                            <button class="option-button-in-payment" onclick="getBillOfCashPayment()">get facture</button>
+                        </div>
+                    </div>
+                    <div id="bill-of-selected-resident-in-cash-payment" style="display: none;">
+                        <div id="part-of-bill-of-selected-resident-in-cash-payment">
+                          
+                        </div>
+                        <div id="part-of-options-of-bill-of-selected-resident-in-cash-payment">
+                            <button class="back-button-in-payment" onclick="backToShowInformationOfSelectedResident_Cash()">Back</button>
+                            <button class="option-button-in-payment">print facture</button>
+                        </div>
                     </div>
                 </div>
             </div>

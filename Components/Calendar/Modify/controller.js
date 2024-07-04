@@ -164,19 +164,19 @@ function getSelectedStartDate() {
     return SELECTED_START_DATE;
 }
 
-function addNewPayment(LIST_OF_ROOMS , floor , room , Bed , numberOfResident) {
-    var newPaid = document.getElementById('new-paid-in-page-modify-reserve-in-payment').value;
-    newPaid = parseInt(newPaid);
-    var typeOfpaid = document.getElementById('select-of-type-paid-in-payment').value;
-    var crDate = new Date();
-    crDate = formatDate1(crDate);
-    var p = new PaymentProcess(crDate , newPaid , typeOfpaid);
+// function addNewPayment(LIST_OF_ROOMS , floor , room , Bed , numberOfResident) {
+//     var newPaid = document.getElementById('new-paid-in-page-modify-reserve-in-payment').value;
+//     newPaid = parseInt(newPaid);
+//     var typeOfpaid = document.getElementById('select-of-type-paid-in-payment').value;
+//     var crDate = new Date();
+//     crDate = formatDate1(crDate);
+//     var p = new PaymentProcess(crDate , newPaid , typeOfpaid);
     
-    // for(let i = 0 ; i < LIST_OF_ROOMS.length ; i++) {
-    //     if (LIST_OF_ROOMS[i].floorNumber === floor && LIST_OF_ROOMS[i].roomNumber === room){
-    //         LIST_OF_ROOMS[i].listOfResidentsInBed[Bed][numberOfResident].push(p);
-    //         break;
-    //     }
-    // }
+//     for(let i = 0 ; i < LIST_OF_ROOMS.length ; i++) {
+//         if (LIST_OF_ROOMS[i].floorNumber === floor && LIST_OF_ROOMS[i].roomNumber === room){
+//             LIST_OF_ROOMS[i].listOfResidentsInBed[Bed][numberOfResident].listOfPaid.push(p);
+//             break;
+//         }
+//     }
     
-}
+// }

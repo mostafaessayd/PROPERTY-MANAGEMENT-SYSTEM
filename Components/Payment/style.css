@@ -87,6 +87,9 @@
 }
 
 #part-of-percentage-in-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height : 50px;
     width: 60px;
     border-right: 1px solid white;
@@ -223,4 +226,123 @@
     border-right: 1px solid white;  
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px; 
+}
+
+#part-of-all-paid-of-guest-in-cash-payment {
+    scrollbar-width: none;
+    overflow: scroll;
+    height: 448px;
+    width: 475px;
+}
+
+#part-of-options-in-paid-of-guest-in-cash-payment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scrollbar-width: none;
+    overflow: scroll;
+    height: 50px;
+    width: 475px; 
+    border-top: 0.5px solid rgb(16, 162, 160);
+}
+
+.container-of-two-type-in-payment {
+    /* display: flex; */
+    /* justify-content: center;
+    align-items: center; */
+    height : 50px;
+    width: 60px;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px; 
+}
+
+.first-part-container-of-two-type-in-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height : 25px;
+    width: 60px;
+    border-top-right-radius: 20px;
+}
+
+.second-part-container-of-two-type-in-payment {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height : 25px;
+    width: 60px;
+    border-bottom-right-radius: 20px;
+}
+
+#bill-of-selected-resident-in-card-payment {
+    border-left: 0.5px solid rgb(16, 162, 160);
+    scrollbar-width: none;
+    overflow: scroll;
+    height: 498px;
+    width: 475px;
+}
+
+#part-of-bill-of-selected-resident-in-card-payment {
+    scrollbar-width: none;
+    overflow: scroll;
+    height: 448px;
+    width: 475px;
+}
+
+#part-of-options-of-bill-of-selected-resident-in-card-payment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scrollbar-width: none;
+    overflow: scroll;
+    height: 50px;
+    width: 475px; 
+    border-top: 0.5px solid rgb(16, 162, 160);
+}
+
+#bill-of-selected-resident-in-cash-payment {
+    border-left: 0.5px solid rgb(16, 162, 160);
+    scrollbar-width: none;
+    overflow: scroll;
+    height: 498px;
+    width: 475px;
+}
+
+#part-of-bill-of-selected-resident-in-cash-payment {
+    scrollbar-width: none;
+    overflow: scroll;
+    height: 448px;
+    width: 475px;
+}
+
+#part-of-options-of-bill-of-selected-resident-in-cash-payment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    scrollbar-width: none;
+    overflow: scroll;
+    height: 50px;
+    width: 475px; 
+    border-top: 0.5px solid rgb(16, 162, 160);
+}
+
+.back-button-in-payment{
+    background-color: rgb(32 , 162 , 160);
+    color: rgb(251 , 225 , 117);
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    width: 50%;
+    height: 80%;
+}
+
+.option-button-in-payment{
+    background-color: #bc5e57;
+    color: rgb(251 , 225 , 117);
+    width: 40%;
+    margin-left: 30px;
+    border: none;
+    cursor: pointer;
+    border-radius: 20px;
+    height: 80%;
 }

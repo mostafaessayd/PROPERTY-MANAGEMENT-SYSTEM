@@ -423,11 +423,13 @@ input[type=submit] {
 /*style of bill*/
 .container6 {
     
-    padding: 20px;
+    /* padding: 20px;
     background: white; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
     width: 550px; 
-    margin-left: 190px;
+    margin-left: 190px; */
+    height: 448px;
+    width: 475px;
 }
 .h2-of-bill {
     text-align: center;
