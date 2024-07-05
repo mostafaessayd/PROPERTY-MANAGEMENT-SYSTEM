@@ -178,16 +178,16 @@ class rsdnt {
                 this.listOfPaid.push(p);
             }
         
-            const ab = ['Card' , 'Cash'];
-            var op = ab[Math.floor(Math.random() * 2)];
+        //     const ab = ['Card' , 'Cash'];
+        //     var op = ab[Math.floor(Math.random() * 2)];
 
-        for(let i = 0 ; i < 30 ; i++) {
-            var date = new Date();
-            date.setDate(date.getDate() + Math.floor(Math.random() * 30));
-            date = formatDate1(date);
-            var p = new PaymentProcess(date, 2 +  Math.floor(Math.random() * 30) , op);
-            this.listOfPaid.push(p);
-        }
+        // for(let i = 0 ; i < 30 ; i++) {
+        //     var date = new Date();
+        //     date.setDate(date.getDate() + Math.floor(Math.random() * 30));
+        //     date = formatDate1(date);
+        //     var p = new PaymentProcess(date, 2 +  Math.floor(Math.random() * 30) , op);
+        //     this.listOfPaid.push(p);
+        // }
 
         this.firstName = firstName;
         this.lastName = lastName;
