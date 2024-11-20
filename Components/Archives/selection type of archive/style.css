@@ -1,0 +1,35 @@
+#page-of-selection-type-of-archives {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 570px;
+    width: 950px;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.card-of-select-type-of-archive {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 50px;
+    padding: 20px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    width: 300px;
+    height: 350px;
+    transition: transform 0.3s ease;
+}
+
+.card-of-select-type-of-archive:hover {
+    transform: scale(1.05);
+}
+
+.card-of-select-type-of-archive i{
+}

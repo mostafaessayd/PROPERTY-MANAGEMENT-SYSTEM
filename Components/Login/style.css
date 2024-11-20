@@ -1,0 +1,122 @@
+.main-login-page {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #e7ecf2;
+}
+
+.container-of-login-page {
+    display: flex;
+    height: 97vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    display: flex;
+    width: 900px;
+    height: 500px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.login-form {
+    background-color: white;
+    padding: 40px;
+    width: 50%;
+}
+
+.login-form h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.login-form input[type="submit"] {
+    background-color: #0288d1;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.login-form input[type="submit"]:hover {
+    background-color: #026fa4;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.forgot-password a {
+    color: #0288d1;
+    text-decoration: none;
+}
+
+.illustration {
+    width: 50%;
+    background: linear-gradient(135deg, #36d1dc, #5b86e5);
+    /* background-color: rgb(252 , 251 , 239); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.illustration img {
+    border-radius: 50px;
+    width: 80%;
+    height: auto;
+}
+
+
+.dropdown-container {
+    position: relative;
+    width: 300px;
+}
+
+#accountInput {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.dropdown-content {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: white;
+    max-height: 200px;
+    overflow-y: auto;
+    display: none;
+    z-index: 1;
+}
+
+.dropdown-content .account-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.dropdown-content .account-item img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.dropdown-content .account-item:hover {
+    background-color: #f1f1f1;
+}
